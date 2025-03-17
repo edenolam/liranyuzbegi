@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ song.title }}</h1>
+    <p><strong>Artiste :</strong> {{ song.artist }}</p>
+    <p><strong>Album :</strong> {{ song.album }}</p>
+    <p><strong>Année :</strong> {{ song.year }}</p>
+
+    {% if song.image %}
+        <img src="{{ asset('uploads/covers/' ~ song.image) }}" alt="{{ song.title }}" width="200">
+    {% endif %}
+
+    <a href="{{ path('app_song_list') }}">Retour à la liste</a>
+{% endblock %}
+

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h2 class="text-center text-primary fw-bold">🎵 Dernières musiques ajoutées</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+            {% for song in latestSongs %}
+                <div class="col">
+                    <div class="card shadow-lg border-0 h-100">
+                        {% if song.coverImage %}
+                            <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" class="card-img-top" alt="{{ song.title }}" style="height: 250px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body text-center">
+                            <h5 class="card-title text-dark fw-bold">{{ song.title }}</h5>
+                            <p class="card-text text-muted">🎤 Artiste : {{ song.artist }}</p>
+                            {% if song.album %}
+                                <p class="card-text">💿 Album : {{ song.album }}</p>
+                            {% endif %}
+                        </div>
+                        {% if song.audioFile %}
+                            <div class="card-footer bg-white text-center">
+                                <audio id="audio-{{ loop.index }}" src="{{ asset('uploads/songs/' ~ song.audioFile) }}"></audio>
+                                <button class="btn btn-primary btn-sm" onclick="document.getElementById('audio-{{ loop.index }}').play()">▶️ Écouter</button>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-center text-muted">Aucune musique ajoutée.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
