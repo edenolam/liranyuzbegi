@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-5">
-        <h2 class="text-center text-primary fw-bold">🎵 Dernières musiques ajoutées</h2>
+        <h2 class="text-center text-primary fw-bold">{{ 'latest_songs'|trans }}</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
             {% for song in latestSongs %}
                 <div class="col">
@@ -22,7 +22,9 @@
                         {% if song.audioFile %}
                             <div class="card-footer bg-white text-center">
                                 <audio id="audio-{{ loop.index }}" src="{{ asset('uploads/songs/' ~ song.audioFile) }}"></audio>
-                                <button class="btn btn-primary btn-sm" onclick="document.getElementById('audio-{{ loop.index }}').play()">▶️ Écouter</button>
+                                <button class="btn btn-primary btn-sm" onclick="playAudio({{ loop.index }})">▶️ Écouter</button>
+                                <button class="btn btn-warning btn-sm" onclick="pauseAudio({{ loop.index }})">⏸️ Pause</button>
+                                <button class="btn btn-danger btn-sm" onclick="stopAudio({{ loop.index }})">⏹️ Stop</button>
                             </div>
                         {% endif %}
                     </div>

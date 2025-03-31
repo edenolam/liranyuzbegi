@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    /**
+     * @throws TransportExceptionInterface
+     */
     #[Route('/contact', name: 'contact')]
     public function index(Request $request, MailerInterface $mailer): Response
     {
@@ -21,10 +24,10 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            // Création et envoi de l'email
+            // Création de l'email
             $email = (new Email())
                 ->from($data['email'])
-                ->to('contact@example.com')  // Change cette adresse
+                ->to('julienbasquin.dev@gmail.com')  // Assure-toi que cette adresse est correcte
                 ->subject('Nouveau message de contact')
                 ->text(
                     "Nom: {$data['name']}\n" .
@@ -32,13 +35,14 @@ class ContactController extends AbstractController
                     "Message:\n{$data['message']}"
                 );
 
+            // Envoi de l'email
             $mailer->send($email);
 
-            // Message de confirmation
+            // Message flash
             $this->addFlash('success', 'Votre message a été envoyé avec succès !');
-
             return $this->redirectToRoute('contact');
         }
+
 
         return $this->render('contact/index.html.twig', [
             'contactForm' => $form->createView(),
