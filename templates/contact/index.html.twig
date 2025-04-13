@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}{{ 'contact'|trans }}{% endblock %}
 
 {% block body %}
     <div class="container mt-5">
-        <h2 class="text-center text-primary">📩 Contactez-nous</h2>
+        <h2 class="text-center text-primary">{{ 'contact_header'|trans }}</h2>
 
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">{{ message }}</div>
@@ -14,17 +14,17 @@
             <div class="col-md-6">
                 {{ form_start(contactForm) }}
                 <div class="mb-3">
-                    {{ form_label(contactForm.name) }}
+                    {{ form_label(contactForm.name, 'contact_name'|trans) }}
                     {{ form_widget(contactForm.name, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(contactForm.name) }}
                 </div>
                 <div class="mb-3">
-                    {{ form_label(contactForm.email) }}
+                    {{ form_label(contactForm.email, 'contact_email'|trans) }}
                     {{ form_widget(contactForm.email, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(contactForm.email) }}
                 </div>
                 <div class="mb-3">
-                    {{ form_label(contactForm.message) }}
+                    {{ form_label(contactForm.message, 'contact_message'|trans) }}
                     {{ form_widget(contactForm.message, {'attr': {'class': 'form-control'}}) }}
                     {{ form_errors(contactForm.message) }}
                 </div>

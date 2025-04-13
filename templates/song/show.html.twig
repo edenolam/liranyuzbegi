@@ -6,8 +6,8 @@
     <p><strong>Album :</strong> {{ song.album }}</p>
     <p><strong>Année :</strong> {{ song.year }}</p>
 
-    {% if song.image %}
-        <img src="{{ asset('uploads/covers/' ~ song.image) }}" alt="{{ song.title }}" width="200">
+    {% if song.coverImage %}
+        <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" alt="{{ song.title }}" width="200">
     {% endif %}
 
     <a href="{{ path('app_song_list') }}">Retour à la liste</a>

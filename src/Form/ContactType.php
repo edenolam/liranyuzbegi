@@ -15,19 +15,16 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Votre nom',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Votre email',
                 'attr' => ['class' => 'form-control']
             ])
             ->add('message', TextareaType::class, [
-                'label' => 'Votre message',
                 'attr' => ['class' => 'form-control', 'rows' => 5]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer',
+                'label' => 'contact_send',
                 'attr' => ['class' => 'btn btn-primary mt-3']
             ]);
     }

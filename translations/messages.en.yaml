@@ -3,4 +3,50 @@ home: 'Home'
 contact: 'Contact'
 about: 'About'
 songs: 'Music'
+footer_text: "© 2025 MusiqueApp - All rights reserved."
+songs_list: "List of Songs"
+all_songs: "🎶 All Songs"
+artist: "🎤 Artist"
+album: "💿 Album"
+no_songs: "No songs available."
+
+
+
+about_title: "About - My Passion for Electronic Music"
+about_header: "My Passion for Electronic Music 🎧"
+about_intro: "Electronic music is more than just sound; it's an experience, a journey through beats, synths, and energy that transports the listener to another dimension."
+
+about_started_title: "How It All Started 🎶"
+about_started_text: "My fascination with electronic music began with the hypnotic rhythms of **house, techno, and trance**. From the pulsating basslines of <strong>Daft Punk</strong> to the mesmerizing melodies of <strong>Armin van Buuren</strong>, every track sparked my creativity."
+
+about_why_title: "Why Electronic Music? 🔥"
+about_why_text: "Electronic music is limitless. It blends technology and art, allowing producers to create futuristic sounds that push the boundaries of music. Whether it's the deep vibes of **progressive house**, the energy of **big room**, or the raw power of **industrial techno**, each subgenre tells its own story."
+
+about_journey_title: "My Journey into Production 🎛️"
+about_journey_text: "Over time, my passion grew beyond listening—I wanted to **create**. Experimenting with DAWs like <strong>Ableton Live</strong> and <strong>FL Studio</strong>, I started producing my own tracks, blending deep bass, synth arpeggios, and atmospheric pads to craft unique electronic soundscapes."
+
+about_quote: "🎵 Music is not just sound—it's energy, emotion, and a way of life. 🎵"
+
+
+contact_title: "Contact"
+contact_header: "Contact Us"
+contact_name: "Name"
+contact_email: "Email"
+contact_message: "Message"
+contact_send: "Send"
+
+
+login:
+  title: "Login"
+  header: "Sign in to your account"
+  email: "Email address"
+  email_placeholder: "Enter your email"
+  password: "Password"
+  password_placeholder: "Enter your password"
+  submit: "Log in"
+
+
+
+
+
 

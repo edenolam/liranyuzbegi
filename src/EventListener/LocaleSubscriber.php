@@ -15,15 +15,13 @@ class LocaleSubscriber implements EventSubscriberInterface
         $this->requestStack = $requestStack;
     }
 
-    public function onKernelRequest(RequestEvent $event)
+    public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
         $session = $this->requestStack->getSession();
 
-        if ($session) {
-            $locale = $session->get('_locale', 'he'); // Hébreu par défaut
-            $request->setLocale($locale);
-        }
+        $locale = $session->get('_locale', 'he'); // Hébreu par défaut
+        $request->setLocale($locale);
     }
 
     public static function getSubscribedEvents(): array
