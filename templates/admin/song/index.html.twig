@@ -1,45 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Song index{% endblock %}
+{% block title %}{{ 'admin.song.index.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Song index</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center text-primary">{{ 'admin.song.index.header'|trans }}</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
             <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Year</th>
-                <th>Album</th>
-                <th>CoverImage</th>
-                <th>AudioFile</th>
-                <th>actions</th>
+                <th>{{ 'admin.song.field.id'|trans }}</th>
+                <th>{{ 'admin.song.field.title'|trans }}</th>
+                <th>{{ 'admin.song.field.artist'|trans }}</th>
+                <th>{{ 'admin.song.field.year'|trans }}</th>
+                <th>{{ 'admin.song.field.album'|trans }}</th>
+                <th>{{ 'admin.song.field.cover'|trans }}</th>
+                <th>{{ 'admin.song.field.audio'|trans }}</th>
+                <th>{{ 'admin.actions.actions'|trans }}</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for song in songs %}
-            <tr>
-                <td>{{ song.id }}</td>
-                <td>{{ song.title }}</td>
-                <td>{{ song.artist }}</td>
-                <td>{{ song.year }}</td>
-                <td>{{ song.album }}</td>
-                <td>{{ song.coverImage }}</td>
-                <td>{{ song.audioFile }}</td>
-                <td>
-                    <a href="{{ path('app_admin_song_show', {'id': song.id}) }}">show</a>
-                    <a href="{{ path('app_admin_song_edit', {'id': song.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for song in songs %}
+                <tr>
+                    <td>{{ song.id }}</td>
+                    <td>{{ song.title }}</td>
+                    <td>{{ song.artist }}</td>
+                    <td>{{ song.year }}</td>
+                    <td>{{ song.album }}</td>
+                    <td>
+                        {% if song.coverImage %}
+                            <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" alt="cover" width="60">
+                        {% else %}
+                            {{ 'admin.song.field.no_cover'|trans }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if song.audioFile %}
+                            <a href="{{ asset('uploads/songs/' ~ song.audioFile) }}" target="_blank">{{ 'admin.song.field.listen'|trans }}</a>
+                        {% else %}
+                            {{ 'admin.song.field.no_audio'|trans }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary" href="{{ path('app_admin_song_show', {'id': song.id}) }}">{{ 'admin.actions.show'|trans }}</a>
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_admin_song_edit', {'id': song.id}) }}">{{ 'admin.actions.edit'|trans }}</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8" class="text-center">{{ 'admin.song.index.no_records'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_admin_song_new') }}">Create new</a>
+        <div class="text-center mt-4">
+            <a class="btn btn-success" href="{{ path('app_admin_song_new') }}">{{ 'admin.actions.create'|trans }}</a>
+        </div>
+    </div>
 {% endblock %}

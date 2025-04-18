@@ -16,26 +16,35 @@ class SongType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class, ['label' => 'Titre'])
-            ->add('artist', TextType::class, ['label' => 'Artiste'])
-            ->add('year', IntegerType::class, ['label' => 'Année'])
-            ->add('album', TextType::class, ['required' => false, 'label' => 'Album'])
+            ->add('title', TextType::class, ['label' => 'song.title'])
+            ->add('artist', TextType::class, ['label' => 'song.artist'])
+            ->add('year', IntegerType::class, ['label' => 'song.year'])
+            ->add('album', TextType::class, [
+                'required' => false,
+                'label' => 'song.album'
+            ])
             ->add('coverImage', FileType::class, [
-                'label' => 'Image de couverture',
+                'label' => 'song.cover_image',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File(['mimeTypes' => ['image/jpeg', 'image/png']])
+                    new File([
+                        'mimeTypes' => ['image/jpeg', 'image/png'],
+                    ])
                 ],
             ])
             ->add('audioFile', FileType::class, [
-                'label' => 'Fichier audio (MP3)',
+                'label' => 'song.audio_file',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File(['mimeTypes' => ['audio/mpeg'], 'mimeTypesMessage' => 'Veuillez uploader un fichier MP3'])
+                    new File([
+                        'mimeTypes' => ['audio/mpeg'],
+                        'mimeTypesMessage' => 'song.audio_file_invalid',
+                    ])
                 ],
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

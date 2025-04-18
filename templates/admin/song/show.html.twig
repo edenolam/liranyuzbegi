@@ -1,46 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Song{% endblock %}
+{% block title %}{{ 'admin.song.show.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Song</h1>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center text-light">{{ 'admin.song.show.header'|trans }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ song.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ song.title }}</td>
-            </tr>
-            <tr>
-                <th>Artist</th>
-                <td>{{ song.artist }}</td>
-            </tr>
-            <tr>
-                <th>Year</th>
-                <td>{{ song.year }}</td>
-            </tr>
-            <tr>
-                <th>Album</th>
-                <td>{{ song.album }}</td>
-            </tr>
-            <tr>
-                <th>CoverImage</th>
-                <td>{{ song.coverImage }}</td>
-            </tr>
-            <tr>
-                <th>AudioFile</th>
-                <td>{{ song.audioFile }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <th>{{ 'admin.song.field.id'|trans }}</th>
+                            <td>{{ song.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'admin.song.field.title'|trans }}</th>
+                            <td>{{ song.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'admin.song.field.artist'|trans }}</th>
+                            <td>{{ song.artist }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'admin.song.field.year'|trans }}</th>
+                            <td>{{ song.year }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'admin.song.field.album'|trans }}</th>
+                            <td>{{ song.album }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'admin.song.field.cover'|trans }}</th>
+                            <td>
+                                {% if song.coverImage %}
+                                    <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" alt="Cover" class="img-fluid" style="max-height: 200px;">
+                                {% else %}
+                                    <em>{{ 'admin.song.field.no_cover'|trans }}</em>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'admin.song.field.audio'|trans }}</th>
+                            <td>
+                                {% if song.audioFile %}
+                                    <audio controls>
+                                        <source src="{{ asset('uploads/songs/' ~ song.audioFile) }}" type="audio/mpeg">
+                                        {{ 'admin.song.field.audio_not_supported'|trans }}
+                                    </audio>
+                                {% else %}
+                                    <em>{{ 'admin.song.field.no_audio'|trans }}</em>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
-    <a href="{{ path('app_admin_song_index') }}">back to list</a>
-
-    <a href="{{ path('app_admin_song_edit', {'id': song.id}) }}">edit</a>
-
-    {{ include('admin/song/_delete_form.html.twig') }}
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ path('app_admin_song_index') }}" class="btn btn-outline-secondary">
+                            &larr; {{ 'admin.song.show.back_to_list'|trans }}
+                        </a>
+                        <div>
+                            <a href="{{ path('app_admin_song_edit', {'id': song.id}) }}" class="btn btn-warning">
+                                {{ 'admin.actions.edit'|trans }}
+                            </a>
+                            {{ include('admin/song/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

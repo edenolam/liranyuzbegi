@@ -1,4 +1,17 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-light">{{ button_label|default('Save') }}</button>
+
+    {% for field in [form.title, form.artist, form.year, form.album, form.coverImage, form.audioFile] %}
+        <div class="mb-3">
+            {{ form_label(field) }}
+            {{ form_widget(field, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(field) }}
+        </div>
+    {% endfor %}
+
+<div class="text-end">
+    <button class="btn btn-success">
+        {{ button_label|default('admin.form.save'|trans) }}
+    </button>
+</div>
+
 {{ form_end(form) }}

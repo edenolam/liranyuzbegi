@@ -45,6 +45,56 @@ login:
   password_placeholder: "Enter your password"
   submit: "Log in"
 
+# partie admin
+admin:
+  actions:
+    actions: "Actions"
+    show: "Show"
+    edit: "Edit"
+    create: "Create new"
+    delete: "Delete"
+    back: "Back"
+    update: 'Update'
+  song:
+    show:
+      title: "Song details"
+      header: "Song Details"
+      back_to_list: "Back to list"
+    index:
+      title: "Song list (Admin)"
+      header: "📻 Manage Songs"
+      no_records: "No songs found"
+    field:
+      id: "ID"
+      title: "Title"
+      artist: "Artist"
+      year: "Year"
+      album: "Album"
+      cover: "Cover Image"
+      audio: "Audio File"
+      no_cover: "No image"
+      no_audio: "No file"
+      listen: "Listen"
+      audio_not_supported: "Your browser does not support the audio element"
+    new:
+      title: "Add New Song"
+      header: "Create a New Song"
+      back_to_list: "Back to song list"
+    edit:
+      title: "Edit Song"
+      header: "Edit Song"
+      back_to_list: "Back to list"
+  form:
+    save: "Save"
+
+song:
+  title: Title
+  artist: Artist
+  year: Year
+  album: Album
+  cover_image: Cover image
+  audio_file: Audio file (MP3)
+  audio_file_invalid: Please upload a valid MP3 file
 
 
 

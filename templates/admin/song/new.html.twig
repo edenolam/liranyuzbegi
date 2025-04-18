@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Song{% endblock %}
+{% block title %}{{ 'admin.song.new.title'|trans }}{% endblock %}
 
 {% block body %}
-    <h1>Create new Song</h1>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center text-light">{{ 'admin.song.new.header'|trans }}</h1>
 
-    {{ include('admin/song/_form.html.twig') }}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm p-4">
+                    {{ include('admin/song/_form.html.twig') }}
 
-    <a href="{{ path('app_admin_song_index') }}">back to list</a>
+                    <div class="text-end mt-3">
+                        <a href="{{ path('app_admin_song_index') }}" class="btn btn-outline-secondary">
+                            &larr; {{ 'admin.song.new.back_to_list'|trans }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

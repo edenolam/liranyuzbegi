@@ -45,5 +45,54 @@ login:
   password_placeholder: "הזן את הסיסמה שלך"
   submit: "התחבר"
 
+# partie admin
+admin:
+  actions:
+    actions: "פעולות"
+    show: "הצג"
+    edit: "ערוך"
+    create: "צור חדש"
+    delete: "מחק"
+    back: "חזרה"
+    update: "עדכן"
+  song:
+    new:
+      title: "הוסף שיר חדש"
+      header: "צור שיר חדש"
+      back_to_list: "חזרה לרשימת השירים"
+    edit:
+      title: "ערוך שיר"
+      header: "ערוך שיר"
+      back_to_list: "חזור לרשימה"
+    index:
+      title: "רשימת שירים (ניהול)"
+      header: "📻 ניהול שירים"
+      no_records: "לא נמצאו שירים"
+    show:
+      title: "פרטי שיר"
+      header: "פרטי שיר"
+      back_to_list: "חזור לרשימה"
+    field:
+      id: "מזהה"
+      title: "כותרת"
+      artist: "אמן"
+      year: "שנה"
+      album: "אלבום"
+      cover: "תמונת עטיפה"
+      audio: "קובץ שמע"
+      no_cover: "אין תמונה"
+      no_audio: "אין קובץ"
+      listen: "האזן"
+      audio_not_supported: "הדפדפן שלך אינו תומך בניגון שמע"
 
+  form:
+    save: "שמור"
 
+song:
+  title: כותרת
+  artist: אמן
+  year: שנה
+  album: אלבום
+  cover_image: תמונת עטיפה
+  audio_file: קובץ שמע (MP3)
+  audio_file_invalid: העלה קובץ MP3 תקין

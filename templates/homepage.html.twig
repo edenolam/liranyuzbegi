@@ -20,7 +20,7 @@
                             {% endif %}
                         </div>
                         {% if song.audioFile %}
-                            <div class="card-footer bg-white text-center">
+                            <div class="card-footer bg-white text-center ltr-block">
                                 <audio id="audio-{{ loop.index }}" src="{{ asset('uploads/songs/' ~ song.audioFile) }}"></audio>
                                 <button class="btn btn-sm" onclick="playAudio({{ loop.index }})">▶️</button>
                                 <button class="btn btn-sm" onclick="pauseAudio({{ loop.index }})">⏸️</button>
