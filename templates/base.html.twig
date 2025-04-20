@@ -66,13 +66,15 @@
 </nav>
 
 
-<main class="container mt-5">
-    {% block body %}{% endblock %}
-</main>
+<div class="d-flex flex-column min-vh-100">
+    <main class="container mt-5 flex-grow-1">
+        {% block body %}{% endblock %}
+    </main>
 
-<footer class="text-center mt-5 p-3 bg-black">
-    <p class="mb-0">{{ 'footer_text'|trans }}</p>
-</footer>
+    <footer class="text-center p-3 bg-black">
+        <p class="mb-0">{{ 'footer_text'|trans }}</p>
+    </footer>
+</div>
 
 <script>
     function playAudio(index) {

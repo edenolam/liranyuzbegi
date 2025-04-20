@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Form\ContactType;
@@ -7,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +16,7 @@ class ContactController extends AbstractController
      * @throws TransportExceptionInterface
      */
     #[Route('/contact', name: 'contact')]
-    public function index(Request $request, MailerInterface $mailer): Response
+    public function index(Request $request, TransportInterface $transport): Response
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
@@ -25,28 +24,23 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            // Création de l'email
             $email = (new Email())
-                ->from($data['email'])
-                ->to('julienbasquin.dev@gmail.com')  // Assure-toi que cette adresse est correcte
+                ->from('contact@liranyuzbegi.edenolam.com')
+                ->replyTo($data['email'])
+                ->to('julienbasquin.dev@gmail.com')
                 ->subject('Nouveau message de contact')
-                ->text(
-                    "Nom: {$data['name']}\n" .
-                    "Email: {$data['email']}\n" .
-                    "Message:\n{$data['message']}"
-                );
+                ->text("Nom: {$data['name']}\nEmail: {$data['email']}\nMessage:\n{$data['message']}");
 
-            // Envoi de l'email
-            $mailer->send($email);
+            // Envoie direct, pas via Messenger
+            $transport->send($email);
 
-            // Message flash
-            $this->addFlash('success', 'Votre message a été envoyé avec succès !');
+            $this->addFlash('success', 'Message sent');
             return $this->redirectToRoute('contact');
         }
-
 
         return $this->render('contact/index.html.twig', [
             'contactForm' => $form->createView(),
         ]);
     }
 }
+
