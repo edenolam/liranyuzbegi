@@ -9,9 +9,10 @@
             {% for song in songs %}
                 <div class="col">
                     <div class="card shadow-lg border-0 h-100">
-                        {% if song.coverImage %}
-                            <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" class="card-img-top" alt="{{ song.title }}" style="height: 250px; object-fit: cover;">
-                        {% endif %}
+                        <img src="{{ asset('uploads/covers/' ~ (song.coverImage ?: 'defaultcoverimage.png')) }}"
+                             class="card-img-top"
+                             alt="{{ song.title }}"
+                             style="height: 250px; object-fit: cover;">
                         <div class="card-body text-center">
                             <h5 class="card-title text-dark fw-bold">{{ song.title }}</h5>
                             <p class="card-text text-muted">{{ 'artist'|trans }} : {{ song.artist }}</p>

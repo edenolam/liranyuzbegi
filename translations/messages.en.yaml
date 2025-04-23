@@ -1,17 +1,25 @@
-latest_songs: "🎵 Latest songs added"
+# ===============================
+# 🌍 Navigation & Layout
+# ===============================
 home: 'Home'
+songs: 'Music'
 contact: 'Contact'
 about: 'About'
-songs: 'Music'
-footer_text: "© 2025 MusiqueApp - All rights reserved."
+footer_text: "© 2025 MusicApp - All rights reserved."
+
+# ===============================
+# 🎵 Songs (Front)
+# ===============================
+latest_songs: "🎵 Latest songs added"
 songs_list: "List of Songs"
 all_songs: "🎶 All Songs"
 artist: "🎤 Artist"
 album: "💿 Album"
 no_songs: "No songs available."
 
-
-
+# ===============================
+# 📄 About Page
+# ===============================
 about_title: "About - My Passion for Electronic Music"
 about_header: "My Passion for Electronic Music 🎧"
 about_intro: "Electronic music is more than just sound; it's an experience, a journey through beats, synths, and energy that transports the listener to another dimension."
@@ -27,15 +35,20 @@ about_journey_text: "Over time, my passion grew beyond listening—I wanted to *
 
 about_quote: "🎵 Music is not just sound—it's energy, emotion, and a way of life. 🎵"
 
-
+# ===============================
+# ✉️ Contact Page
+# ===============================
 contact_title: "Contact"
 contact_header: "Contact Us"
 contact_name: "Name"
 contact_email: "Email"
 contact_message: "Message"
 contact_send: "Send"
+contact_message_sent: "Message sent"
 
-
+# ===============================
+# 🔐 Login
+# ===============================
 login:
   title: "Login"
   header: "Sign in to your account"
@@ -45,7 +58,9 @@ login:
   password_placeholder: "Enter your password"
   submit: "Log in"
 
-# partie admin
+# ===============================
+# ⚙️ Admin Section
+# ===============================
 admin:
   actions:
     actions: "Actions"
@@ -55,6 +70,8 @@ admin:
     delete: "Delete"
     back: "Back"
     update: 'Update'
+  form:
+    save: "Save"
   song:
     show:
       title: "Song details"
@@ -84,9 +101,10 @@ admin:
       title: "Edit Song"
       header: "Edit Song"
       back_to_list: "Back to list"
-  form:
-    save: "Save"
 
+# ===============================
+# 🎼 Song Form (Shared)
+# ===============================
 song:
   title: Title
   artist: Artist
@@ -95,8 +113,3 @@ song:
   cover_image: Cover image
   audio_file: Audio file (MP3)
   audio_file_invalid: Please upload a valid MP3 file
-
-
-
-
-

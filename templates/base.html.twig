@@ -14,9 +14,12 @@
             direction: {% if app.request.locale == 'he' %}rtl{% else %}ltr{% endif %};
             text-align: {% if app.request.locale == 'he' %}right{% else %}left{% endif %};
         }
-        .navbar-nav {
-            flex-direction: {% if app.request.locale == 'he' %}row-reverse{% else %}row{% endif %};
+        @media (min-width: 992px) {
+            .navbar-nav {
+                flex-direction: {% if app.request.locale == 'he' %}row-reverse{% else %}row{% endif %};
+            }
         }
+
         .dropdown-menu {
             text-align: right;
         }

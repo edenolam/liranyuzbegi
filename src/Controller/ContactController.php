@@ -27,14 +27,14 @@ class ContactController extends AbstractController
             $email = (new Email())
                 ->from('contact@liranyuzbegi.edenolam.com')
                 ->replyTo($data['email'])
-                ->to('julienbasquin.dev@gmail.com')
-                ->subject('Nouveau message de contact')
-                ->text("Nom: {$data['name']}\nEmail: {$data['email']}\nMessage:\n{$data['message']}");
+                ->to('lir.yy23@gmail.com')
+                ->subject('New message from MusicApp')
+                ->text("Name: {$data['name']}\nEmail: {$data['email']}\nMessage:\n{$data['message']}");
 
             // Envoie direct, pas via Messenger
             $transport->send($email);
 
-            $this->addFlash('success', 'Message sent');
+            $this->addFlash('success', $this->translator->trans('contact_message_sent'));
             return $this->redirectToRoute('contact');
         }
 

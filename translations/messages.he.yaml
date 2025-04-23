@@ -1,41 +1,42 @@
-latest_songs: "🎵 שירים שנוספו לאחרונה"
+# Pages principales
 home: 'דף הבית'
-songs: 'מוזיקה'
-contact: 'צור קשר'
 about: 'אודות'
+contact: 'צור קשר'
+songs: 'מוזיקה'
 
-footer_text: "© 2025 MusiqueApp - כל הזכויות שמורות."
+# Footer
+footer_text: "© 2025 MusicApp - כל הזכויות שמורות."
 
+# Section musique
 songs_list: "רשימת שירים"
+latest_songs: "🎵 שירים שנוספו לאחרונה"
 all_songs: "🎶 כל השירים"
+no_songs: "אין שירים זמינים."
 artist: "🎤 אמן"
 album: "💿 אלבום"
-no_songs: "אין שירים זמינים."
 
-
+# Page A propos
 about_title: "אודות - התשוקה שלי למוזיקה אלקטרונית"
 about_header: "התשוקה שלי למוזיקה אלקטרונית 🎧"
 about_intro: "מוזיקה אלקטרונית היא יותר מרק צלילים; זו חוויה, מסע דרך קצב, סינתיסייזרים ואנרגיה שמובילים את המאזין לממד אחר."
-
 about_started_title: "איך הכל התחיל 🎶"
 about_started_text: "המשיכה שלי למוזיקה אלקטרונית התחילה עם הקצבים ההיפנוטיים של **האוס, טכנו וטרנס**. מהבאסים הפועמים של <strong>Daft Punk</strong> ועד למנגינות הקסומות של <strong>Armin van Buuren</strong>, כל טראק הצית את היצירתיות שלי."
-
 about_why_title: "למה מוזיקה אלקטרונית? 🔥"
 about_why_text: "מוזיקה אלקטרונית היא אינסופית. היא משלבת בין טכנולוגיה ואמנות, ומאפשרת למפיקים ליצור צלילים עתידניים שחוצים את גבולות המוזיקה. בין אם זה הוויבים העמוקים של **פרוגרסיב האוס**, האנרגיה של **ביג רום**, או הכוח הגולמי של **אינדסטריאל טכנו**, לכל תת-ז'אנר יש את הסיפור הייחודי שלו."
-
 about_journey_title: "המסע שלי להפקת מוזיקה 🎛️"
 about_journey_text: "עם הזמן, התשוקה שלי למוזיקה הלכה מעבר להאזנה—רציתי **ליצור**. תוך כדי ניסויים עם תוכנות כמו <strong>Ableton Live</strong> ו-<strong>FL Studio</strong>, התחלתי להפיק רצועות משלי, תוך שילוב של באסים עמוקים, ארפג'ים סינתיים ופדים אטמוספריים כדי ליצור סאונד אלקטרוני ייחודי."
-
 about_quote: "🎵 מוזיקה היא לא רק צלילים—זו אנרגיה, רגש ואורח חיים. 🎵"
 
-
+# Page Contact
 contact_title: "צור קשר"
 contact_header: "צור קשר"
 contact_name: "שם"
 contact_email: "אימייל"
 contact_message: "הודעה"
 contact_send: "שלח"
+contact_message_sent: "ההודעה נשלחה"
 
+# Page Connexion
 login:
   title: "התחברות"
   header: "התחבר לחשבונך"
@@ -45,7 +46,7 @@ login:
   password_placeholder: "הזן את הסיסמה שלך"
   submit: "התחבר"
 
-# partie admin
+# Section admin
 admin:
   actions:
     actions: "פעולות"
@@ -56,14 +57,6 @@ admin:
     back: "חזרה"
     update: "עדכן"
   song:
-    new:
-      title: "הוסף שיר חדש"
-      header: "צור שיר חדש"
-      back_to_list: "חזרה לרשימת השירים"
-    edit:
-      title: "ערוך שיר"
-      header: "ערוך שיר"
-      back_to_list: "חזור לרשימה"
     index:
       title: "רשימת שירים (ניהול)"
       header: "📻 ניהול שירים"
@@ -71,6 +64,14 @@ admin:
     show:
       title: "פרטי שיר"
       header: "פרטי שיר"
+      back_to_list: "חזור לרשימה"
+    new:
+      title: "הוסף שיר חדש"
+      header: "צור שיר חדש"
+      back_to_list: "חזרה לרשימת השירים"
+    edit:
+      title: "ערוך שיר"
+      header: "ערוך שיר"
       back_to_list: "חזור לרשימה"
     field:
       id: "מזהה"
@@ -84,10 +85,10 @@ admin:
       no_audio: "אין קובץ"
       listen: "האזן"
       audio_not_supported: "הדפדפן שלך אינו תומך בניגון שמע"
-
   form:
     save: "שמור"
 
+# Fiche chanson (hors admin)
 song:
   title: כותרת
   artist: אמן
