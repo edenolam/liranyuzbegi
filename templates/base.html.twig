@@ -55,15 +55,15 @@
                 </li>
             </ul>
             <!-- Menu déroulant pour changer la langue -->
-            <div class="dropdown ms-3">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown">
-                    🌍 {{ app.request.locale }}
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ path('change_locale', { 'locale': 'he' }) }}">🇮🇱 עברית</a></li>
-                    <li><a class="dropdown-item" href="{{ path('change_locale', { 'locale': 'en' }) }}">🇬🇧 English</a></li>
-                </ul>
-            </div>
+{#            <div class="dropdown ms-3">#}
+{#                <button class="btn btn-secondary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown">#}
+{#                    🌍 {{ app.request.locale }}#}
+{#                </button>#}
+{#                <ul class="dropdown-menu">#}
+{#                    <li><a class="dropdown-item" href="{{ path('change_locale', { 'locale': 'he' }) }}">🇮🇱 עברית</a></li>#}
+{#                    <li><a class="dropdown-item" href="{{ path('change_locale', { 'locale': 'en' }) }}">🇬🇧 English</a></li>#}
+{#                </ul>#}
+{#            </div>#}
         </div>
     </div>
 </nav>
