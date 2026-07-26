@@ -8,7 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ContactController extends AbstractController
 {
@@ -16,7 +17,12 @@ class ContactController extends AbstractController
      * @throws TransportExceptionInterface
      */
     #[Route('/contact', name: 'contact')]
-    public function index(Request $request, TransportInterface $transport): Response
+    #[Route('/{_locale}/contact', name: 'localized_contact', requirements: ['_locale' => 'en|he'])]
+    public function index(
+        Request $request,
+        TransportInterface $transport,
+        TranslatorInterface $translator,
+    ): Response
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
@@ -34,7 +40,7 @@ class ContactController extends AbstractController
             // Envoie direct, pas via Messenger
             $transport->send($email);
 
-            $this->addFlash('success', $this->translator->trans('contact_message_sent'));
+            $this->addFlash('success', $translator->trans('contact_message_sent'));
             return $this->redirectToRoute('contact');
         }
 
@@ -43,4 +49,3 @@ class ContactController extends AbstractController
         ]);
     }
 }
-

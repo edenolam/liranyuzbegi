@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'error.generic.title'|trans }}{% endblock %}
+{% block meta_description %}{{ 'error.generic.description'|trans }}{% endblock %}
+
+{% block body %}
+    <section class="error-page" aria-labelledby="error-title">
+        <p class="error-page__code" aria-hidden="true">{{ status_code|default(500) }}</p>
+        <p class="error-page__eyebrow">{{ 'error.eyebrow'|trans }}</p>
+        <h1 id="error-title">{{ 'error.generic.heading'|trans }}</h1>
+        <p class="error-page__message">{{ 'error.generic.message'|trans }}</p>
+        <div class="error-page__actions">
+            <a class="btn btn-primary" href="{{ path('localized_home', {'_locale': app.request.locale}) }}">
+                {{ 'error.back_home'|trans }}
+            </a>
+            <a class="btn btn-outline-secondary" href="{{ path('localized_contact', {'_locale': app.request.locale}) }}">
+                {{ 'contact'|trans }}
+            </a>
+        </div>
+    </section>
+{% endblock %}

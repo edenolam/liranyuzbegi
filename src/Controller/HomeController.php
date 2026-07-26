@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
+    #[Route('/{_locale}', name: 'localized_home', requirements: ['_locale' => 'en|he'])]
     public function index(SongRepository $songRepository): Response
     {
         $latestSongs = $songRepository->findLatestSongs(6);
@@ -19,4 +20,3 @@ class HomeController extends AbstractController
         ]);
     }
 }
-

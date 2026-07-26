@@ -21,16 +21,19 @@ class SongType extends AbstractType
             ->add('year', IntegerType::class, ['label' => 'song.year'])
             ->add('album', TextType::class, [
                 'required' => false,
-                'label' => 'song.album'
+                'label' => 'song.album',
             ])
             ->add('coverImage', FileType::class, [
                 'label' => 'song.cover_image',
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'mimeTypes' => ['image/jpeg', 'image/png'],
-                    ])
+                    new File(
+                        maxSize: '8M',
+                        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+                        maxSizeMessage: 'song.cover_image_too_large',
+                        mimeTypesMessage: 'song.cover_image_invalid',
+                    ),
                 ],
             ])
             ->add('audioFile', FileType::class, [
@@ -38,13 +41,14 @@ class SongType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'mimeTypes' => ['audio/mpeg'],
-                        'mimeTypesMessage' => 'song.audio_file_invalid',
-                    ])
+                    new File(
+                        maxSize: '25M',
+                        mimeTypes: ['audio/mpeg'],
+                        maxSizeMessage: 'song.audio_file_too_large',
+                        mimeTypesMessage: 'song.audio_file_invalid',
+                    ),
                 ],
-            ]);
-
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

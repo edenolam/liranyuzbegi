@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AboutController extends AbstractController
 {
     #[Route('/about', name: 'about')]
+    #[Route('/{_locale}/about', name: 'localized_about', requirements: ['_locale' => 'en|he'])]
     public function index(): Response
     {
         return $this->render('about/index.html.twig');

@@ -1,15 +1,36 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ song.title }}{% endblock %}
+{% block meta_description %}{{ 'seo.song_description'|trans({'%title%': song.title, '%artist%': song.artist}) }}{% endblock %}
+
 {% block body %}
-    <h1>{{ song.title }}</h1>
-    <p><strong>Artiste :</strong> {{ song.artist }}</p>
-    <p><strong>Album :</strong> {{ song.album }}</p>
-    <p><strong>Année :</strong> {{ song.year }}</p>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <article class="card p-4">
+                    <h1>{{ song.title }}</h1>
+                    <p><strong>{{ 'song.artist'|trans }}:</strong> {{ song.artist }}</p>
+                    {% if song.album %}
+                        <p><strong>{{ 'song.album'|trans }}:</strong> {{ song.album }}</p>
+                    {% endif %}
+                    {% if song.year %}
+                        <p><strong>{{ 'song.year'|trans }}:</strong> {{ song.year }}</p>
+                    {% endif %}
 
-    {% if song.coverImage %}
-        <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" alt="{{ song.title }}" width="200">
-    {% endif %}
+                    {% if song.coverImage %}
+                        <img src="{{ asset('uploads/covers/' ~ song.coverImage) }}" alt="{{ song.title }}" class="img-fluid mb-4" style="max-width: 240px;">
+                    {% endif %}
 
-    <a href="{{ path('app_song_list') }}">Retour à la liste</a>
+                    {% if song.audioFile %}
+                        <audio controls class="mb-4">
+                            <source src="{{ asset('uploads/songs/' ~ song.audioFile) }}" type="audio/mpeg">
+                            {{ 'admin.song.field.audio_not_supported'|trans }}
+                        </audio>
+                    {% endif %}
+
+                    <a class="btn btn-outline-secondary align-self-start" href="{{ path('app_song_list') }}">{{ 'song.back_to_list'|trans }}</a>
+                </article>
+            </div>
+        </div>
+    </div>
 {% endblock %}
-

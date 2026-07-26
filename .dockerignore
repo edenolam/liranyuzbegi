@@ -1,0 +1,10 @@
+.git
+.idea
+var
+vendor
+public/assets
+assets/vendor
+.env.local
+.env.*.local
+phpunit.xml
+.phpunit.result.cache

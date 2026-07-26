@@ -7,4 +7,27 @@ import './bootstrap.js';
  */
 import './styles/app.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');
+document.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-audio-action][data-audio-index]');
+    if (!button) {
+        return;
+    }
+
+    const audio = document.getElementById(`audio-${button.dataset.audioIndex}`);
+    if (!audio) {
+        return;
+    }
+
+    switch (button.dataset.audioAction) {
+        case 'play':
+            audio.play();
+            break;
+        case 'pause':
+            audio.pause();
+            break;
+        case 'stop':
+            audio.pause();
+            audio.currentTime = 0;
+            break;
+    }
+});

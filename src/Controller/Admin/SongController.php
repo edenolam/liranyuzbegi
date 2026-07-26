@@ -4,7 +4,6 @@ namespace App\Controller\Admin;
 
 use App\Entity\Song;
 use App\Form\SongType;
-use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
@@ -28,7 +27,7 @@ final class SongController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_admin_song_new')]
+    #[Route('/new', name: 'app_admin_song_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $song = new Song();
@@ -48,7 +47,7 @@ final class SongController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_song_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_admin_song_show', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function show(Song $song): Response
     {
         return $this->render('admin/song/show.html.twig', [
@@ -56,7 +55,7 @@ final class SongController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_song_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_admin_song_edit', requirements: ['id' => '\d+'], methods: ['GET', 'POST'])]
     public function edit(Song $song, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(SongType::class, $song);
@@ -72,12 +71,16 @@ final class SongController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_song_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_admin_song_delete', requirements: ['id' => '\d+'], methods: ['POST'])]
     public function delete(Request $request, Song $song, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $song->getId(), $request->getPayload()->getString('_token'))) {
+            $coverImage = $song->getCoverImage();
+            $audioFile = $song->getAudioFile();
             $entityManager->remove($song);
             $entityManager->flush();
+            $this->removeUploadedFile($coverImage, 'covers');
+            $this->removeUploadedFile($audioFile, 'songs');
         }
 
         return $this->redirectToRoute('app_admin_song_index', [], Response::HTTP_SEE_OTHER);
@@ -87,24 +90,44 @@ final class SongController extends AbstractController
     {
         $coverFile = $form->get('coverImage')->getData();
         if ($coverFile) {
+            $previousFilename = $song->getCoverImage();
             $newFilename = $this->uploadFile($coverFile, 'covers');
             $song->setCoverImage($newFilename);
+            $this->removeUploadedFile($previousFilename, 'covers');
         }
 
         $audioFile = $form->get('audioFile')->getData();
         if ($audioFile) {
+            $previousFilename = $song->getAudioFile();
             $newFilename = $this->uploadFile($audioFile, 'songs');
             $song->setAudioFile($newFilename);
+            $this->removeUploadedFile($previousFilename, 'songs');
         }
     }
 
     private function uploadFile(UploadedFile $file, string $folder): string
     {
         $destination = $this->getParameter('kernel.project_dir') . "/public/uploads/$folder";
-        $newFilename = uniqid() . '.' . $file->guessExtension();
+        $extension = $file->guessExtension();
+        if ($extension === null) {
+            throw new \RuntimeException('Unable to determine the uploaded file extension.');
+        }
+
+        $newFilename = bin2hex(random_bytes(16)) . '.' . $extension;
         $file->move($destination, $newFilename);
 
         return $newFilename;
     }
 
+    private function removeUploadedFile(?string $filename, string $folder): void
+    {
+        if ($filename === null || $filename !== basename($filename)) {
+            return;
+        }
+
+        $path = $this->getParameter('kernel.project_dir') . "/public/uploads/$folder/$filename";
+        if (is_file($path)) {
+            unlink($path);
+        }
+    }
 }

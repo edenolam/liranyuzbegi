@@ -4,12 +4,12 @@
 
 {% block body %}
     <div class="container mt-5">
-        <h1 class="mb-4 text-center text-light">{{ 'admin.song.edit.header'|trans }}</h1>
+        <h1 class="mb-4 text-center">{{ 'admin.song.edit.header'|trans }}</h1>
 
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-sm p-4">
-                    {{ include('admin/song/_form.html.twig', {'button_label': 'Update'}) }}
+                    {{ include('admin/song/_form.html.twig', {'button_label': 'admin.actions.update'|trans}) }}
 
                     <div class="text-end mt-3">
                         <a href="{{ path('app_admin_song_index') }}" class="btn btn-outline-secondary">

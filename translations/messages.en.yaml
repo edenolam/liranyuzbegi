@@ -5,7 +5,52 @@ home: 'Home'
 songs: 'Music'
 contact: 'Contact'
 about: 'Biographies'
-footer_text: "© 2025 MusicApp - All rights reserved."
+footer_text: "© 2026 Liran Yuzbegi. All rights reserved."
+footer_identity: "Artist · Researcher"
+footer_tagline: "Sound, music, experimental film, and contemporary art in dialogue with memory, duration, and the moving image."
+footer_explore: "Explore"
+footer_contact_text: "For artistic projects, research, screenings, and collaborations."
+footer_contact_cta: "Start a conversation"
+footer_rights: "All rights reserved."
+footer_location: "Working internationally"
+
+seo:
+  default_description: "Official website of Liran Yuzbegi, interdisciplinary artist and researcher working across sound, music, experimental film, and contemporary art."
+  home_title: "Liran Yuzbegi | Sound Artist, Composer & Filmmaker"
+  home_description: "Explore the music and sound works of Liran Yuzbegi, an interdisciplinary artist, composer, experimental filmmaker, and researcher."
+  about_description: "Biography of Liran Yuzbegi: interdisciplinary artist and researcher in sound, music, experimental film, slow cinema, and contemporary art."
+  music_title: "Music & Sound Works | Liran Yuzbegi"
+  music_description: "Listen to music, electroacoustic compositions, and sound works by interdisciplinary artist Liran Yuzbegi."
+  contact_title: "Contact | Liran Yuzbegi"
+  contact_description: "Contact Liran Yuzbegi regarding artistic projects, research, screenings, exhibitions, and collaborations."
+  song_description: "Listen to “%title%” by %artist% and discover more music and sound works."
+  person_description: "Interdisciplinary artist and researcher working across sound, music, experimental film, and contemporary art."
+  person_job_title: "Interdisciplinary artist and researcher"
+
+accessibility:
+  skip_to_content: "Skip to main content"
+  main_navigation: "Main navigation"
+  toggle_navigation: "Open or close navigation"
+  language_selection: "Language selection"
+
+audio_controls:
+  play: "Play %title%"
+  pause: "Pause %title%"
+  stop: "Stop %title%"
+
+error:
+  eyebrow: "Liran Yuzbegi"
+  back_home: "Return home"
+  404:
+    title: "Page not found | Liran Yuzbegi"
+    description: "The requested page could not be found on Liran Yuzbegi’s website."
+    heading: "This page has drifted out of view."
+    message: "The address may have changed, or the page may no longer exist. Continue exploring the music, films, and artistic research."
+  generic:
+    title: "Something went wrong | Liran Yuzbegi"
+    description: "An unexpected error occurred on Liran Yuzbegi’s website."
+    heading: "A momentary interruption."
+    message: "The page cannot be displayed right now. Please return to the homepage or contact us if the problem continues."
 
 # ===============================
 # 🎵 Songs (Front)
@@ -20,20 +65,21 @@ no_songs: "No songs available."
 # ===============================
 # 📄 About Page
 # ===============================
-about_title: "About - My Passion for Electronic Music"
-about_header: "My Passion for Electronic Music 🎧"
-about_intro: "Electronic music is more than just sound; it's an experience, a journey through beats, synths, and energy that transports the listener to another dimension."
-
-about_started_title: "How It All Started 🎶"
-about_started_text: "My fascination with electronic music began with the hypnotic rhythms of **house, techno, and trance**. From the pulsating basslines of <strong>Daft Punk</strong> to the mesmerizing melodies of <strong>Armin van Buuren</strong>, every track sparked my creativity."
-
-about_why_title: "Why Electronic Music? 🔥"
-about_why_text: "Electronic music is limitless. It blends technology and art, allowing producers to create futuristic sounds that push the boundaries of music. Whether it's the deep vibes of **progressive house**, the energy of **big room**, or the raw power of **industrial techno**, each subgenre tells its own story."
-
-about_journey_title: "My Journey into Production 🎛️"
-about_journey_text: "Over time, my passion grew beyond listening—I wanted to **create**. Experimenting with DAWs like <strong>Ableton Live</strong> and <strong>FL Studio</strong>, I started producing my own tracks, blending deep bass, synth arpeggios, and atmospheric pads to craft unique electronic soundscapes."
-
-about_quote: "🎵 Music is not just sound—it's energy, emotion, and a way of life. 🎵"
+about_title: "About - Liran Yuzbegi"
+about_header: "לירן יוזבגי"
+about_eyebrow: "Sound / Film / Contemporary Art"
+about_intro: "Liran Yuzbegi is an interdisciplinary artist and researcher working across sound, music, experimental film, and contemporary art."
+about_practice_title: "Artistic Practice"
+about_practice_text: "As a composer, pianist, sound artist, and experimental filmmaker, she explores the intersections of music, visual forms, duration, and perceptions of time. Her research has focused extensively on slow cinema and its relationships with music, audiovisual culture, and contemporary art. Through both scholarly research and artistic practice, she examines representations of loss, trauma, grief, and memory, and institutional spaces of care through the lens of slowness aesthetics."
+about_research_title: "Research"
+about_research_text: "Liran Yuzbegi completed a PhD in Electroacoustic Music Composition and Film Studies from Keele University. She also has an MA in Music Composition and a separate MA in Art History with a specialisation in Curatorial Studies. She is currently a Guest Researcher in Budapest and previously held a visiting research position in the Netherlands."
+about_curatorial_title: "Curatorial Practice"
+about_curatorial_text: "Curatorial practice constitutes a central strand of her work. Through exhibition-making, curatorial writing, and collaborations with museums and cultural institutions, she explores the relationships between contemporary art, cinema, sound, and visual culture."
+about_audiovisual_title: "Audiovisual Relationships"
+about_audiovisual_text: "At the core of her work lies an exploration of audiovisual relationships and the creative possibilities that emerge through the encounter between music and the visual image. She approaches musical composition and visual form as autonomous artistic entities, each capable of existing independently as a complete work. Rather than conceiving their relationship in terms of accompaniment or hierarchy, she investigates the aesthetic possibilities that arise through their interaction. In her work, music and image enter into a dialogue in which neither medium is subordinate to the other. Their encounter generates a new artwork: an audiovisual form whose temporal and aesthetic qualities emerge from the interaction between two distinct yet interconnected presences."
+about_education_title: "Editing, Mentoring, and Education"
+about_education_text: "Alongside her research and artistic activities, Liran has worked for over a decade as an academic writing editor, mentor, and educator in the humanities and social sciences. Through editing, teaching, and research support, she has worked closely with students, researchers, and academic staff across a wide range of disciplines, contributing to scholarly projects at every stage of development, from early ideas to completed publications. Engaging with such a wide range of subjects and methodologies has become an important part of her own creative and research process."
+about_presented_text: "Her films, sound works, and musical compositions have been presented internationally at festivals, exhibitions, concerts, and academic events across Europe and North America."
 
 # ===============================
 # ✉️ Contact Page
@@ -68,6 +114,7 @@ admin:
     edit: "Edit"
     create: "Create new"
     delete: "Delete"
+    delete_confirm: "Are you sure you want to delete this song?"
     back: "Back"
     update: 'Update'
   form:
@@ -112,4 +159,8 @@ song:
   album: Album
   cover_image: Cover image
   audio_file: Audio file (MP3)
+  cover_image_invalid: Please upload a JPEG, PNG, or WebP image
+  cover_image_too_large: The cover image must not exceed 8 MB
   audio_file_invalid: Please upload a valid MP3 file
+  audio_file_too_large: The MP3 file must not exceed 25 MB
+  back_to_list: Back to the list

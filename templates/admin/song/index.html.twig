@@ -4,9 +4,10 @@
 
 {% block body %}
     <div class="container mt-4">
-        <h1 class="mb-4 text-center text-primary">{{ 'admin.song.index.header'|trans }}</h1>
+        <h1 class="mb-4 text-center">{{ 'admin.song.index.header'|trans }}</h1>
 
-        <table class="table table-striped table-hover">
+        <div class="table-responsive">
+        <table class="table table-striped table-hover mb-0">
             <thead class="table-dark">
             <tr>
                 <th>{{ 'admin.song.field.id'|trans }}</th>
@@ -53,6 +54,7 @@
             {% endfor %}
             </tbody>
         </table>
+        </div>
 
         <div class="text-center mt-4">
             <a class="btn btn-success" href="{{ path('app_admin_song_new') }}">{{ 'admin.actions.create'|trans }}</a>

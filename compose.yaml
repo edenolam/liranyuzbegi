@@ -1,0 +1,48 @@
+services:
+  app:
+    build:
+      context: .
+    working_dir: /app
+    ports:
+      - "8001:8000"
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "mysql://app:app@database:3306/media_db?serverVersion=8.0.32&charset=utf8mb4"
+      MAILER_DSN: "smtp://mailpit:1025"
+    volumes:
+      - .:/app
+      - composer_cache:/tmp/composer-cache
+    depends_on:
+      database:
+        condition: service_healthy
+      mailpit:
+        condition: service_started
+    command: >
+      sh -c "composer install &&
+             php -S 0.0.0.0:8000 -t public public/router.php"
+
+  database:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: media_db
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8026:8025"
+
+volumes:
+  mysql_data:
+  composer_cache:
