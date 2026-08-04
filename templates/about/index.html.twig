@@ -1,43 +1,18 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}{{ 'about_title'|trans }}{% endblock %}
-{% block meta_description %}{{ 'seo.about_description'|trans }}{% endblock %}
-
+{% extends 'portfolio_base.html.twig' %}
+{% block title %}About | Liran Yuzbegi{% endblock %}
+{% block description %}Biography of Liran Yuzbegi, researcher, composer, sound artist, pianist and experimental filmmaker.{% endblock %}
 {% block body %}
-    <section class="about-profile">
-        <header class="about-profile__header">
-            <p class="about-profile__eyebrow">{{ 'about_eyebrow'|trans }}</p>
-            <h1>{{ 'about_header'|trans }}</h1>
-            <p class="about-profile__intro">{{ 'about_intro'|trans }}</p>
-        </header>
-
-        <div class="about-profile__grid">
-            <article class="about-profile__section">
-                <h2>{{ 'about_practice_title'|trans }}</h2>
-                <p>{{ 'about_practice_text'|trans }}</p>
-            </article>
-
-            <article class="about-profile__section">
-                <h2>{{ 'about_research_title'|trans }}</h2>
-                <p>{{ 'about_research_text'|trans }}</p>
-            </article>
-
-            <article class="about-profile__section">
-                <h2>{{ 'about_curatorial_title'|trans }}</h2>
-                <p>{{ 'about_curatorial_text'|trans }}</p>
-            </article>
-
-            <article class="about-profile__section">
-                <h2>{{ 'about_audiovisual_title'|trans }}</h2>
-                <p>{{ 'about_audiovisual_text'|trans }}</p>
-            </article>
-
-            <article class="about-profile__section">
-                <h2>{{ 'about_education_title'|trans }}</h2>
-                <p>{{ 'about_education_text'|trans }}</p>
-            </article>
-        </div>
-
-        <p class="about-profile__closing">{{ 'about_presented_text'|trans }}</p>
-    </section>
+<section class="portfolio-page portfolio-about">
+    <div class="portrait-placeholder" role="img" aria-label="Portrait placeholder">
+        <span>Your<br>portrait<br>here</span>
+    </div>
+    <article class="portfolio-copy">
+        <h1>About</h1>
+        <p>Liran Yuzbegi is a researcher, composer, sound artist, pianist, experimental filmmaker, and academic writing editor. Her work moves between research and artistic practice, with a particular focus on slowness in cinema, electroacoustic music, audiovisual culture, and contemporary art. Through both scholarly inquiry and creative work, she explores questions of temporality, loss, grief, trauma, and care, as well as the relationships between music and audiovisual form.</p>
+        <span class="portfolio-rule"></span>
+        <p>Liran completed a PhD in Electroacoustic Music Composition and Film Studies at Keele University, alongside an MA in Music Composition and an MA in Art History with a specialisation in Curatorial Studies. She is currently a Guest Researcher in Budapest.</p>
+        <span class="portfolio-rule"></span>
+        <p>Her films, sound works, and musical compositions have been presented internationally at festivals, exhibitions, concerts, and academic events across Europe and North America.</p>
+    </article>
+</section>
 {% endblock %}

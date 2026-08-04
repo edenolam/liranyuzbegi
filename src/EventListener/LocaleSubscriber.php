@@ -20,16 +20,8 @@ class LocaleSubscriber implements EventSubscriberInterface
         $request = $event->getRequest();
         $session = $this->requestStack->getSession();
 
-        $routeLocale = $request->attributes->get('_locale');
-        if (is_string($routeLocale) && in_array($routeLocale, ['en', 'he'], true)) {
-            $session->set('_locale', $routeLocale);
-            $request->setLocale($routeLocale);
-
-            return;
-        }
-
-        $locale = $session->get('_locale', 'he');
-        $request->setLocale($locale);
+        $session->set('_locale', 'en');
+        $request->setLocale('en');
     }
 
     public static function getSubscribedEvents(): array

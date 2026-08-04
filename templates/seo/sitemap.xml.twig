@@ -1,34 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% set pages = [
-        {'route': 'localized_home', 'params': {}, 'priority': '1.0'},
-        {'route': 'localized_about', 'params': {}, 'priority': '0.9'},
-        {'route': 'localized_song_list', 'params': {}, 'priority': '0.8'},
-        {'route': 'localized_contact', 'params': {}, 'priority': '0.6'}
+        {'route': 'home', 'priority': '1.0'},
+        {'route': 'about', 'priority': '0.9'},
+        {'route': 'research', 'priority': '0.9'},
+        {'route': 'contact', 'priority': '0.7'}
     ] %}
     {% for page in pages %}
-        {% for locale in ['he', 'en'] %}
-            <url>
-                <loc>{{ absolute_url(path(page.route, page.params|merge({'_locale': locale}))) }}</loc>
-                <xhtml:link rel="alternate" hreflang="he" href="{{ absolute_url(path(page.route, page.params|merge({'_locale': 'he'}))) }}"/>
-                <xhtml:link rel="alternate" hreflang="en" href="{{ absolute_url(path(page.route, page.params|merge({'_locale': 'en'}))) }}"/>
-                <xhtml:link rel="alternate" hreflang="x-default" href="{{ absolute_url(path(page.route, page.params|merge({'_locale': 'he'}))) }}"/>
-                <changefreq>weekly</changefreq>
-                <priority>{{ page.priority }}</priority>
-            </url>
-        {% endfor %}
-    {% endfor %}
-    {% for song in songs %}
-        {% for locale in ['he', 'en'] %}
-            <url>
-                <loc>{{ absolute_url(path('localized_song_show', {'_locale': locale, 'id': song.id})) }}</loc>
-                <xhtml:link rel="alternate" hreflang="he" href="{{ absolute_url(path('localized_song_show', {'_locale': 'he', 'id': song.id})) }}"/>
-                <xhtml:link rel="alternate" hreflang="en" href="{{ absolute_url(path('localized_song_show', {'_locale': 'en', 'id': song.id})) }}"/>
-                <xhtml:link rel="alternate" hreflang="x-default" href="{{ absolute_url(path('localized_song_show', {'_locale': 'he', 'id': song.id})) }}"/>
-                <changefreq>monthly</changefreq>
-                <priority>0.6</priority>
-            </url>
-        {% endfor %}
+        <url>
+            <loc>{{ absolute_url(path(page.route)) }}</loc>
+            <changefreq>monthly</changefreq>
+            <priority>{{ page.priority }}</priority>
+        </url>
     {% endfor %}
 </urlset>

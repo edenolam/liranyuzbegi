@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Liran Yuzbegi{% endblock %}</title>
+    <meta name="description" content="{% block description %}Official website of Liran Yuzbegi, researcher, composer and experimental filmmaker.{% endblock %}">
+    <meta name="author" content="Liran Yuzbegi">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="{{ absolute_url(app.request.pathInfo) }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Liran Yuzbegi">
+    <meta property="og:title" content="{{ block('title')|striptags|trim }}">
+    <meta property="og:description" content="{{ block('description')|striptags|trim }}">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="{{ absolute_url(asset('images/liran-corridor.png')) }}">
+    <script type="application/ld+json">{{ {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        'name': 'Liran Yuzbegi',
+        'alternateName': 'לירן יוזבגי',
+        'url': absolute_url(path('home')),
+        'jobTitle': 'Researcher, composer and experimental filmmaker',
+        'knowsAbout': ['Electroacoustic music', 'Experimental film', 'Slow cinema', 'Audiovisual culture', 'Contemporary art']
+    }|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES'))|raw }}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    {{ importmap('app') }}
+    {# Stable filename for manual Hostinger deployments; this file is copied beside compiled assets. #}
+    <link rel="stylesheet" href="/assets/styles/portfolio.css">
+</head>
+<body class="portfolio-site">
+<a class="portfolio-skip" href="#main-content">Skip to main content</a>
+<header class="portfolio-header">
+    <a class="portfolio-brand" href="{{ path('home') }}">LIRAN YUZBEGI</a>
+    <button class="portfolio-menu" type="button" aria-expanded="false" aria-controls="portfolio-navigation">
+        <span class="visually-hidden">Open navigation</span><i></i><i></i>
+    </button>
+    <nav id="portfolio-navigation" aria-label="Main navigation">
+        <a class="{{ app.request.attributes.get('_route') in ['about', 'localized_about'] ? 'active' : '' }}" href="{{ path('about') }}">About</a>
+        <a class="{{ app.request.attributes.get('_route') in ['research', 'localized_research'] ? 'active' : '' }}" href="{{ path('research') }}">Research and Artistic Practice</a>
+        <a class="{{ app.request.attributes.get('_route') in ['contact', 'localized_contact'] ? 'active' : '' }}" href="{{ path('contact') }}">Contact</a>
+    </nav>
+</header>
+<main id="main-content" tabindex="-1">{% block body %}{% endblock %}</main>
+<footer class="portfolio-footer">
+    <span>© {{ 'now'|date('Y') }} Liran Yuzbegi</span>
+    <a href="mailto:contact@liranyuzbegi.com">contact@liranyuzbegi.com</a>
+</footer>
+<script>
+    (() => {
+        const button = document.querySelector('.portfolio-menu');
+        const navigation = document.querySelector('#portfolio-navigation');
+        button?.addEventListener('click', () => {
+            const open = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', String(!open));
+            navigation.classList.toggle('open', !open);
+        });
+    })();
+</script>
+</body>
+</html>

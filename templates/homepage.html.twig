@@ -1,40 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}{{ 'seo.home_title'|trans }}{% endblock %}
-{% block meta_description %}{{ 'seo.home_description'|trans }}{% endblock %}
-
+{% extends 'portfolio_base.html.twig' %}
+{% block title %}Liran Yuzbegi | Researcher, Composer & Experimental Filmmaker{% endblock %}
+{% block description %}Research and artistic practice by Liran Yuzbegi exploring music, audiovisual form, slowness in cinema, loss, grief and institutional spaces of care.{% endblock %}
 {% block body %}
-    <div class="container mt-5" dir="{{ app.request.locale == 'he' ? 'rtl' : 'ltr' }}">
-        <h2 class="text-center fw-bold">{{ 'latest_songs'|trans }}</h2>
-        <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-            {% for song in latestSongs %}
-                <div class="col">
-                    <div class="card shadow-lg h-100">
-                        <img src="{{ song.coverImage ? asset('uploads/covers/' ~ song.coverImage) : asset('defaultcoverimage.svg') }}"
-                                class="card-img-top"
-                                alt="{{ song.title }}"
-                                style="height: 250px; object-fit: cover;">
-
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold">{{ song.title }}</h5>
-                            <p class="card-text">{{ 'artist'|trans }} : {{ song.artist }}</p>
-                            {% if song.album %}
-                                <p class="card-text">{{ 'album'|trans }} : {{ song.album }}</p>
-                            {% endif %}
-                        </div>
-                        {% if song.audioFile %}
-                            <div class="card-footer text-center ltr-block">
-                                <audio id="audio-{{ loop.index }}" preload="metadata" src="{{ asset('uploads/songs/' ~ song.audioFile) }}"></audio>
-                                <button type="button" class="btn btn-sm" data-audio-action="play" data-audio-index="{{ loop.index }}" aria-label="{{ 'audio_controls.play'|trans({'%title%': song.title}) }}">▶️</button>
-                                <button type="button" class="btn btn-sm" data-audio-action="pause" data-audio-index="{{ loop.index }}" aria-label="{{ 'audio_controls.pause'|trans({'%title%': song.title}) }}">⏸️</button>
-                                <button type="button" class="btn btn-sm" data-audio-action="stop" data-audio-index="{{ loop.index }}" aria-label="{{ 'audio_controls.stop'|trans({'%title%': song.title}) }}">⏹️</button>
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-            {% else %}
-                <p class="text-center text-muted">{{ 'no_songs'|trans }}</p>
-            {% endfor %}
-        </div>
+<section class="portfolio-hero">
+    <div class="portfolio-hero__copy">
+        <h1>Liran<br>Yuzbegi <span class="visually-hidden" lang="he" dir="rtl">לירן יוזבגי</span></h1>
+        <p class="portfolio-roles">Researcher | Composer |<br>Experimental Filmmaker</p>
+        <span class="portfolio-rule"></span>
+        <p class="portfolio-summary">Research and artistic practice exploring music, audiovisual form, slowness in cinema, loss, grief and institutional spaces of care.</p>
     </div>
+</section>
 {% endblock %}

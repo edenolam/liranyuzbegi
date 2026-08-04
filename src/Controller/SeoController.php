@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\SongRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,11 +10,9 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 final class SeoController extends AbstractController
 {
     #[Route('/sitemap.xml', name: 'seo_sitemap', methods: ['GET'])]
-    public function sitemap(SongRepository $songRepository): Response
+    public function sitemap(): Response
     {
-        $response = $this->render('seo/sitemap.xml.twig', [
-            'songs' => $songRepository->findAll(),
-        ]);
+        $response = $this->render('seo/sitemap.xml.twig');
         $response->headers->set('Content-Type', 'application/xml; charset=UTF-8');
 
         return $response;

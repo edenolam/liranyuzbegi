@@ -1,41 +1,25 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}{{ 'seo.contact_title'|trans }}{% endblock %}
-{% block meta_description %}{{ 'seo.contact_description'|trans }}{% endblock %}
-
+{% extends 'portfolio_base.html.twig' %}
+{% block title %}Contact | Liran Yuzbegi{% endblock %}
+{% block description %}Contact Liran Yuzbegi regarding artistic projects, research, screenings, exhibitions and collaborations.{% endblock %}
 {% block body %}
-    <div class="container mt-5">
-        <h2 class="text-center">{{ 'contact_header'|trans }}</h2>
-
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">{{ message }}</div>
-        {% endfor %}
-
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card p-4">
-                    {{ form_start(contactForm) }}
-                    <div class="mb-3">
-                        {{ form_label(contactForm.name, 'contact_name'|trans) }}
-                        {{ form_widget(contactForm.name, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(contactForm.name) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_label(contactForm.email, 'contact_email'|trans) }}
-                        {{ form_widget(contactForm.email, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(contactForm.email) }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form_label(contactForm.message, 'contact_message'|trans) }}
-                        {{ form_widget(contactForm.message, {'attr': {'class': 'form-control'}}) }}
-                        {{ form_errors(contactForm.message) }}
-                    </div>
-                    <div class="text-center">
-                        {{ form_widget(contactForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
-                    </div>
-                    {{ form_end(contactForm) }}
-                </div>
+<section class="portfolio-contact">
+    <div class="portfolio-contact__copy">
+        <h1>Contact</h1>
+        <span class="portfolio-rule"></span>
+        <p class="portfolio-contact__label">Email</p>
+        <a class="portfolio-contact__email" href="mailto:contact@liranyuzbegi.com">contact@liranyuzbegi.com</a>
+        {% for message in app.flashes('success') %}<div class="portfolio-success">{{ message }}</div>{% endfor %}
+        <details class="portfolio-form-toggle">
+            <summary>Send a message</summary>
+            <div class="portfolio-form">
+                {{ form_start(contactForm) }}
+                <div>{{ form_label(contactForm.name, 'Name') }}{{ form_widget(contactForm.name) }}{{ form_errors(contactForm.name) }}</div>
+                <div>{{ form_label(contactForm.email, 'Email') }}{{ form_widget(contactForm.email) }}{{ form_errors(contactForm.email) }}</div>
+                <div>{{ form_label(contactForm.message, 'Message') }}{{ form_widget(contactForm.message) }}{{ form_errors(contactForm.message) }}</div>
+                {{ form_widget(contactForm.submit, {'label': 'Send'}) }}
+                {{ form_end(contactForm) }}
             </div>
-        </div>
+        </details>
     </div>
+</section>
 {% endblock %}
