@@ -153,7 +153,14 @@
 
 @media (max-width: 767px) {
     .portfolio-header { background: rgba(13,9,6,.96); padding-block: 1.4rem; }
-    .portfolio-menu { display: flex; }
+    .portfolio-menu {
+        display: flex;
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+    }
     .portfolio-header nav { align-items: flex-start; background: rgba(13,9,6,.98); display: none; flex-direction: column; gap: 1rem; left: 0; padding: 1.5rem; position: absolute; right: 0; top: 100%; }
     .portfolio-header nav.open { display: flex; }
     .portfolio-hero, .portfolio-contact { background-position: 38% center; }
