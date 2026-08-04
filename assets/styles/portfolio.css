@@ -43,14 +43,16 @@
 .portfolio-rule { background: var(--portfolio-accent); display: block; height: 1px; margin: 1.5rem 0; width: 2rem; }
 
 .portfolio-hero, .portfolio-contact {
-    background-image: linear-gradient(90deg, rgba(10, 7, 5, .95), rgba(13, 9, 6, .7) 40%, rgba(13, 9, 6, .12) 78%), url('/images/liran-corridor.png');
     background-position: center 48%;
     background-size: cover;
     min-height: 100vh;
 }
+.portfolio-hero {
+    background-image: linear-gradient(90deg, rgba(10, 7, 5, .87), rgba(13, 9, 6, .48) 43%, rgba(13, 9, 6, .06) 82%), url('/images/background1.png');
+}
 .portfolio-hero { align-items: center; display: flex; padding: 8rem clamp(1.5rem, 4vw, 4.5rem) 5rem; }
 .portfolio-hero__copy { max-width: 35rem; }
-.portfolio-hero h1 { font-size: clamp(5rem, 10vw, 9rem); letter-spacing: -.035em; line-height: .72; margin: 0 0 2.8rem; text-shadow: 0 6px 35px rgba(0, 0, 0, .45); }
+.portfolio-hero h1 { font-size: clamp(5rem, 9vw, 7.5rem); letter-spacing: -.035em; line-height: .76; margin: 0 0 2.2rem; text-shadow: 0 6px 35px rgba(0, 0, 0, .45); }
 .portfolio-roles { font-size: .7rem; letter-spacing: .11em; line-height: 1.8; margin: 0; text-transform: uppercase; }
 .portfolio-summary { line-height: 1.7; margin: 0; max-width: 31rem; }
 
@@ -59,23 +61,31 @@
     min-height: 100vh;
     padding: clamp(8rem, 12vw, 11rem) clamp(1.5rem, 7vw, 8rem) clamp(4rem, 8vw, 7rem);
 }
-.portfolio-about { align-items: center; display: grid; gap: clamp(3rem, 7vw, 7rem); grid-template-columns: minmax(260px, .72fr) minmax(320px, 1fr); }
-.portrait-placeholder { align-items: center; aspect-ratio: 3 / 4.15; background: linear-gradient(135deg, rgba(255,255,255,.07), rgba(0,0,0,.12)), #8d8174; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 30px 80px rgba(0,0,0,.3); color: #30271f; display: flex; font-size: clamp(1rem, 2vw, 1.45rem); justify-content: center; letter-spacing: .08em; max-height: 64vh; text-align: center; text-transform: uppercase; }
-.portfolio-copy { max-width: 46rem; }
+.portfolio-about {
+    align-items: center;
+    background-image: linear-gradient(90deg, rgba(13, 9, 6, .7), rgba(28, 18, 12, .52) 50%, rgba(15, 10, 7, .72)), url('/images/background3.png');
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    gap: clamp(3rem, 6vw, 6rem);
+    grid-template-columns: minmax(240px, .7fr) minmax(340px, 1.2fr);
+}
+.portrait-placeholder { align-items: center; aspect-ratio: 3 / 4.15; background: linear-gradient(135deg, rgba(255,255,255,.07), rgba(0,0,0,.12)), #8d8174; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 30px 80px rgba(0,0,0,.3); color: #30271f; display: flex; font-size: clamp(1rem, 2vw, 1.45rem); justify-content: center; justify-self: center; letter-spacing: .08em; max-height: 64vh; max-width: 320px; text-align: center; text-transform: uppercase; width: 100%; }
+.portfolio-copy { max-width: 40rem; }
 .portfolio-copy h1 { font-size: clamp(3.5rem, 7vw, 6rem); line-height: .9; margin: 0 0 2.5rem; }
-.portfolio-copy p { color: #e0d9ce; line-height: 1.7; margin: 0; }
+.portfolio-copy p { color: #e0d9ce; font-size: clamp(.76rem, .86vw, .88rem); line-height: 1.62; margin: 0; }
 
 .portfolio-research {
     background-color: #1a120d;
     background-image:
-        linear-gradient(90deg, rgba(12, 8, 6, .32), rgba(20, 13, 9, .86) 44%, rgba(25, 17, 12, .96) 100%),
-        linear-gradient(180deg, rgba(19, 12, 8, .32), rgba(19, 12, 8, .7)),
-        url('/images/liran-corridor.png');
-    background-position: center, center, 20% 46%;
+        linear-gradient(90deg, rgba(12, 8, 6, .2), rgba(20, 13, 9, .64) 45%, rgba(25, 17, 12, .9) 100%),
+        linear-gradient(180deg, rgba(19, 12, 8, .18), rgba(19, 12, 8, .42)),
+        url('/images/background2.png');
+    background-position: center;
     background-size: cover;
     display: grid;
     gap: clamp(3rem, 6vw, 7rem);
-    grid-template-columns: minmax(180px, .58fr) minmax(420px, 1.1fr);
+    grid-template-columns: minmax(150px, .46fr) minmax(420px, 1.24fr);
     overflow: hidden;
     position: relative;
 }
@@ -106,13 +116,17 @@
     margin-left: -3px;
     width: 7px;
 }
-.portfolio-research .portfolio-copy { position: relative; z-index: 1; }
+.portfolio-research .portfolio-copy { align-self: center; max-width: 38rem; position: relative; z-index: 1; }
 .portfolio-research .portfolio-copy h1 { font-size: clamp(3rem, 5.4vw, 5.2rem); }
 .portfolio-research .portfolio-copy p { font-size: clamp(.8rem, .95vw, .92rem); text-shadow: 0 2px 12px rgba(0, 0, 0, .55); }
 
 .portfolio-contact { align-items: center; display: flex; padding: 8rem clamp(1.5rem, 7vw, 8rem) 5rem; }
+.portfolio-contact {
+    background-image: linear-gradient(90deg, rgba(10, 7, 5, .86), rgba(13, 9, 6, .54) 48%, rgba(13, 9, 6, .16) 82%), url('/images/background4.png');
+    background-position: center;
+}
 .portfolio-contact__copy { max-width: 38rem; width: 100%; }
-.portfolio-contact h1 { font-size: clamp(5rem, 9vw, 8rem); line-height: .8; margin: 0 0 2.5rem; }
+.portfolio-contact h1 { font-size: clamp(4.5rem, 7vw, 5.6rem); line-height: .82; margin: 0 0 2.2rem; }
 .portfolio-contact__label { font-size: .7rem; font-weight: 500; letter-spacing: .12em; margin: 0 0 .4rem; text-transform: uppercase; }
 .portfolio-contact__email { text-decoration: none; }
 .portfolio-form-toggle { margin-top: 2.5rem; max-width: 32rem; }
