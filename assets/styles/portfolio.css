@@ -79,7 +79,8 @@
     gap: clamp(3rem, 6vw, 6rem);
     grid-template-columns: minmax(240px, .7fr) minmax(340px, 1.2fr);
 }
-.portrait-placeholder { align-items: center; aspect-ratio: 3 / 4.15; background: linear-gradient(135deg, rgba(255,255,255,.07), rgba(0,0,0,.12)), #8d8174; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 30px 80px rgba(0,0,0,.3); color: #30271f; display: flex; font-size: clamp(1rem, 2vw, 1.45rem); justify-content: center; justify-self: center; letter-spacing: .08em; max-height: 64vh; max-width: 320px; text-align: center; text-transform: uppercase; width: 100%; }
+.portfolio-portrait { aspect-ratio: 3 / 4.15; border: 1px solid rgba(255,255,255,.12); box-shadow: 0 30px 80px rgba(0,0,0,.3); justify-self: center; margin: 0; max-height: 64vh; max-width: 320px; overflow: hidden; width: 100%; }
+.portfolio-portrait img { display: block; height: 100%; object-fit: cover; object-position: 50% 35%; width: 100%; }
 .portfolio-copy { max-width: 40rem; }
 .portfolio-copy h1 { font-size: clamp(3.5rem, 7vw, 6rem); line-height: .9; margin: 0 0 2.5rem; }
 .portfolio-copy p { color: #e0d9ce; font-size: clamp(.76rem, .86vw, .88rem); line-height: 1.62; margin: 0; }
@@ -167,7 +168,7 @@
     .portfolio-hero, .portfolio-contact { background-position: 38% center; }
     .portfolio-hero h1 { font-size: clamp(2.25rem, 10.2vw, 4rem); }
     .portfolio-about, .portfolio-research { display: grid; grid-template-columns: 1fr; }
-    .portrait-placeholder { max-height: none; width: min(100%, 420px); }
+    .portfolio-portrait { max-height: none; width: min(100%, 420px); }
     .portfolio-research { background-position: center, center, 32% center; }
     .portfolio-research::after { background: rgba(15, 10, 7, .5); content: ""; inset: 0; position: absolute; }
     .portfolio-research__timeline { display: none; }
