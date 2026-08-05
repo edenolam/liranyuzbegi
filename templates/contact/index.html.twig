@@ -9,6 +9,7 @@
         <p class="portfolio-contact__label">Email</p>
         <a class="portfolio-contact__email" href="mailto:contact@liranyuzbegi.com">contact@liranyuzbegi.com</a>
         {% for message in app.flashes('success') %}<div class="portfolio-success">{{ message }}</div>{% endfor %}
+        {% for message in app.flashes('error') %}<div class="portfolio-error">{{ message }}</div>{% endfor %}
         <details class="portfolio-form-toggle">
             <summary>Send a message</summary>
             <div class="portfolio-form">

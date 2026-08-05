@@ -63,6 +63,14 @@
             button.setAttribute('aria-expanded', String(!open));
             navigation.classList.toggle('open', !open);
         });
+
+        document.querySelector('.portfolio-form form')?.addEventListener('submit', (event) => {
+            const submit = event.currentTarget.querySelector('[type="submit"]');
+            if (submit) {
+                submit.disabled = true;
+                submit.textContent = 'Sending…';
+            }
+        });
     })();
 </script>
 </body>

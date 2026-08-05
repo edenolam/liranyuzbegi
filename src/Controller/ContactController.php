@@ -10,17 +10,16 @@ use Symfony\Component\Mailer\Transport\TransportInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Psr\Log\LoggerInterface;
 
 class ContactController extends AbstractController
 {
-    /**
-     * @throws TransportExceptionInterface
-     */
     #[Route('/contact', name: 'contact')]
     public function index(
         Request $request,
         TransportInterface $transport,
         TranslatorInterface $translator,
+        LoggerInterface $logger,
     ): Response
     {
         $form = $this->createForm(ContactType::class);
@@ -30,14 +29,22 @@ class ContactController extends AbstractController
             $data = $form->getData();
 
             $email = (new Email())
-                ->from('contact@liranyuzbegi.edenolam.com')
+                ->from('contact@liranyuzbegi.com')
                 ->replyTo($data['email'])
                 ->to('lir.yy23@gmail.com')
-                ->subject('New message from MusicApp')
+                ->subject('New message from liranyuzbegi.com')
                 ->text("Name: {$data['name']}\nEmail: {$data['email']}\nMessage:\n{$data['message']}");
 
-            // Envoie direct, pas via Messenger
-            $transport->send($email);
+            try {
+                $transport->send($email);
+            } catch (TransportExceptionInterface $exception) {
+                $logger->error('Contact form email could not be sent.', [
+                    'exception' => $exception,
+                ]);
+                $this->addFlash('error', 'Your message could not be sent. Please try again later or email contact@liranyuzbegi.com directly.');
+
+                return $this->redirectToRoute('contact');
+            }
 
             $this->addFlash('success', $translator->trans('contact_message_sent'));
             return $this->redirectToRoute('contact');

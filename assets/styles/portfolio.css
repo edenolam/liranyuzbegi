@@ -147,6 +147,7 @@
 .portfolio-form .form-control:focus { background: rgba(255,255,255,.07); border-color: var(--portfolio-accent); box-shadow: none; color: #fff; }
 .portfolio-form .btn { background: var(--portfolio-accent); border: 0; border-radius: 0; color: #15100c; font-size: .68rem; letter-spacing: .08em; padding: .7rem 1.4rem; text-transform: uppercase; }
 .portfolio-success { background: rgba(179,158,121,.17); border: 1px solid rgba(200,185,158,.35); margin-top: 1.5rem; padding: .8rem 1rem; }
+.portfolio-error { background: rgba(130, 49, 38, .3); border: 1px solid rgba(210, 133, 112, .55); color: #f2ded7; margin-top: 1.5rem; padding: .8rem 1rem; }
 
 .portfolio-footer { align-items: center; background: #0d0907; border-top: 1px solid rgba(255,255,255,.08); color: var(--portfolio-muted); display: flex; font-size: .62rem; justify-content: space-between; letter-spacing: .07em; padding: 1.3rem clamp(1.5rem, 4vw, 4.5rem); text-transform: uppercase; }
 .portfolio-footer a { text-decoration: none; }
