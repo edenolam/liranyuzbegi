@@ -6,7 +6,7 @@
     <title>{% block title %}Liran Yuzbegi{% endblock %}</title>
     <meta name="description" content="{% block description %}Official website of Liran Yuzbegi, researcher, composer and experimental filmmaker.{% endblock %}">
     <meta name="author" content="Liran Yuzbegi">
-    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="robots" content="{% block robots %}index, follow, max-image-preview:large{% endblock %}">
     {% set canonicalRoutes = {
         'home': '/',
         'about': '/about',
@@ -35,7 +35,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
     {{ importmap('app') }}
     {# Stable filename for manual Hostinger deployments; this file is copied beside compiled assets. #}
-    <link rel="stylesheet" href="/assets/styles/portfolio.css?v=20260805-3">
+    <link rel="stylesheet" href="/assets/styles/portfolio.css?v=20260805-4">
 </head>
 <body class="portfolio-site">
 <a class="portfolio-skip" href="#main-content">Skip to main content</a>

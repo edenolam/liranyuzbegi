@@ -1,39 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends 'portfolio_base.html.twig' %}
 
-{% block title %}{{ 'seo.music_title'|trans }}{% endblock %}
-{% block meta_description %}{{ 'seo.music_description'|trans }}{% endblock %}
+{% block title %}Music | Liran Yuzbegi{% endblock %}
+{% block description %}Music, electroacoustic compositions and sound works by Liran Yuzbegi.{% endblock %}
+{% block robots %}noindex, nofollow{% endblock %}
 
 {% block body %}
-    <div class="container mt-5" dir="{{ app.request.locale == 'he' ? 'rtl' : 'ltr' }}">
-        <h2 class="text-center fw-bold">{{ 'all_songs'|trans }}</h2>
-        <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-            {% for song in songs %}
-                <div class="col">
-                    <div class="card shadow-lg h-100">
-                        <img src="{{ song.coverImage ? asset('uploads/covers/' ~ song.coverImage) : asset('defaultcoverimage.svg') }}"
-                             class="card-img-top"
-                             alt="{{ song.title }}"
-                             style="height: 250px; object-fit: cover;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold">{{ song.title }}</h5>
-                            <p class="card-text">{{ 'artist'|trans }} : {{ song.artist }}</p>
-                            {% if song.album %}
-                                <p class="card-text">{{ 'album'|trans }} : {{ song.album }}</p>
-                            {% endif %}
-                        </div>
-                        {% if song.audioFile %}
-                            <div class="card-footer text-center ltr-block">
-                                <audio id="audio-{{ loop.index }}" preload="metadata" src="{{ asset('uploads/songs/' ~ song.audioFile) }}"></audio>
-                                <button type="button" class="btn btn-sm" data-audio-action="play" data-audio-index="{{ loop.index }}" aria-label="{{ 'audio_controls.play'|trans({'%title%': song.title}) }}">▶️</button>
-                                <button type="button" class="btn btn-sm" data-audio-action="pause" data-audio-index="{{ loop.index }}" aria-label="{{ 'audio_controls.pause'|trans({'%title%': song.title}) }}">⏸️</button>
-                                <button type="button" class="btn btn-sm" data-audio-action="stop" data-audio-index="{{ loop.index }}" aria-label="{{ 'audio_controls.stop'|trans({'%title%': song.title}) }}">⏹️</button>
-                            </div>
-                        {% endif %}
-                    </div>
+<section class="portfolio-music">
+    <header class="portfolio-music__header">
+        <p>Selected works</p>
+        <h1>Music</h1>
+        <span class="portfolio-rule"></span>
+    </header>
+
+    <div class="portfolio-music__grid">
+        {% for song in songs %}
+            <article class="music-work">
+                <div class="music-work__cover">
+                    <img src="{{ song.coverImage ? asset('uploads/covers/' ~ song.coverImage) : asset('defaultcoverimage.svg') }}" alt="Cover artwork for {{ song.title }}">
                 </div>
-            {% else %}
-                <p class="text-center text-muted">{{ 'no_songs'|trans }}</p>
-            {% endfor %}
-        </div>
+                <div class="music-work__body">
+                    <p class="music-work__number">{{ loop.index < 10 ? '0' ~ loop.index : loop.index }}</p>
+                    <h2>{{ song.title }}</h2>
+                    <p>{{ song.artist }}{% if song.album %} · {{ song.album }}{% endif %}{% if song.year %} · {{ song.year }}{% endif %}</p>
+                    {% if song.audioFile %}
+                        <audio id="audio-{{ loop.index }}" preload="metadata" src="{{ asset('uploads/songs/' ~ song.audioFile) }}"></audio>
+                        <div class="music-work__controls">
+                            <button type="button" data-audio-action="play" data-audio-index="{{ loop.index }}" aria-label="Play {{ song.title }}">Play</button>
+                            <button type="button" data-audio-action="pause" data-audio-index="{{ loop.index }}" aria-label="Pause {{ song.title }}">Pause</button>
+                            <button type="button" data-audio-action="stop" data-audio-index="{{ loop.index }}" aria-label="Stop {{ song.title }}">Stop</button>
+                        </div>
+                    {% endif %}
+                </div>
+            </article>
+        {% else %}
+            <p class="portfolio-music__empty">No works are available yet.</p>
+        {% endfor %}
     </div>
+</section>
 {% endblock %}
