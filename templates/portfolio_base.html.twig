@@ -7,7 +7,13 @@
     <meta name="description" content="{% block description %}Official website of Liran Yuzbegi, researcher, composer and experimental filmmaker.{% endblock %}">
     <meta name="author" content="Liran Yuzbegi">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <link rel="canonical" href="{{ absolute_url(app.request.pathInfo) }}">
+    {% set canonicalRoutes = {
+        'home': '/',
+        'about': '/about',
+        'research': '/research-and-artistic-practice',
+        'contact': '/contact'
+    } %}
+    <link rel="canonical" href="https://liranyuzbegi.com{{ canonicalRoutes[app.request.attributes.get('_route')]|default(app.request.pathInfo) }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Liran Yuzbegi">
     <meta property="og:title" content="{{ block('title')|striptags|trim }}">
@@ -19,7 +25,7 @@
         '@type': 'Person',
         'name': 'Liran Yuzbegi',
         'alternateName': 'לירן יוזבגי',
-        'url': absolute_url(path('home')),
+        'url': 'https://liranyuzbegi.com/',
         'jobTitle': 'Researcher, composer and experimental filmmaker',
         'knowsAbout': ['Electroacoustic music', 'Experimental film', 'Slow cinema', 'Audiovisual culture', 'Contemporary art']
     }|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES'))|raw }}</script>

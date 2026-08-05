@@ -17,7 +17,6 @@ class ContactController extends AbstractController
      * @throws TransportExceptionInterface
      */
     #[Route('/contact', name: 'contact')]
-    #[Route('/en/contact', name: 'localized_contact')]
     public function index(
         Request $request,
         TransportInterface $transport,

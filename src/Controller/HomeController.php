@@ -9,7 +9,6 @@ use Symfony\Component\Routing\Attribute\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    #[Route('/en', name: 'localized_home')]
     public function index(): Response
     {
         return $this->render('homepage.html.twig');
