@@ -1,0 +1,28 @@
+DirectoryIndex public/index.php
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloquer les fichiers cachés, sauf les certificats SSL
+    RewriteRule (^|/)\.(?!well-known(?:/|$)) - [F,L]
+
+    # Bloquer les répertoires privés Symfony
+    RewriteRule ^(?:bin|config|migrations|src|templates|tests|translations|var|vendor)(?:/|$) - [F,L,NC]
+
+    # Bloquer les fichiers internes
+    RewriteRule ^(?:composer\.(?:json|lock)|symfony\.lock|phpunit\.xml(?:\.dist)?|compose\.yaml|Dockerfile|README\.md)$ - [F,L,NC]
+
+    # Ne pas retraiter les véritables fichiers internes
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Servir les fichiers publics : assets, images, uploads…
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public/$1 -d
+    RewriteRule ^(.+)$ public/$1 [L]
+
+    # Envoyer toutes les autres routes à Symfony
+    RewriteRule ^ public/index.php [QSA,L]
+</IfModule>

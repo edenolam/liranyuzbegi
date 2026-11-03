@@ -54,8 +54,8 @@ error:
 
 # Section musique
 songs_list: "רשימת שירים"
-latest_songs: "🎵 שירים שנוספו לאחרונה"
-all_songs: "🎶 כל השירים"
+latest_songs: " שירים שנוספו לאחרונה"
+all_songs: " כל השירים"
 no_songs: "אין שירים זמינים."
 artist: "🎤 אמן"
 album: "💿 אלבום"

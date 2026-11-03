@@ -55,9 +55,9 @@ error:
 # ===============================
 # 🎵 Songs (Front)
 # ===============================
-latest_songs: "🎵 Latest songs added"
+latest_songs: " Latest songs added"
 songs_list: "List of Songs"
-all_songs: "🎶 All Songs"
+all_songs: " All Songs"
 artist: "🎤 Artist"
 album: "💿 Album"
 no_songs: "No songs available."
@@ -66,7 +66,7 @@ no_songs: "No songs available."
 # 📄 About Page
 # ===============================
 about_title: "About - Liran Yuzbegi"
-about_header: "לירן יוזבגי"
+about_header: "Liran Yuzbegi"
 about_eyebrow: "Sound / Film / Contemporary Art"
 about_intro: "Liran Yuzbegi is an interdisciplinary artist and researcher working across sound, music, experimental film, and contemporary art."
 about_practice_title: "Artistic Practice"
