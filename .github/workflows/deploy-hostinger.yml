@@ -1,0 +1,102 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Preview changes or deploy to liranyuzbegi.com
+        type: choice
+        required: true
+        default: preview
+        options:
+          - preview
+          - deploy
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-production
+  cancel-in-progress: false
+
+jobs:
+  package:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      APP_ENV: prod
+      APP_DEBUG: '0'
+      # Build placeholders only. The server keeps its own configuration.
+      APP_SECRET: github-actions-build-only
+      DATABASE_URL: mysql://build:build@127.0.0.1:3306/build?serverVersion=8.0.32&charset=utf8mb4
+      MAILER_DSN: 'null://null'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: ctype, iconv, intl, mbstring, pdo_mysql, xml
+          coverage: none
+          tools: composer:v2
+
+      - name: Validate and build production files
+        run: bash scripts/build-production.sh
+
+      - name: Test deployment safeguards without connecting to Hostinger
+        run: python3 -B -m unittest discover -s tests/Deployment -v
+
+      - name: Package production files
+        run: bash scripts/package-hostinger.sh
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: liranyuzbegi-hostinger-${{ github.sha }}
+          path: dist/liranyuzbegi-hostinger.tar.gz
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    needs: package
+    if: github.ref == 'refs/heads/main' && vars.HOSTINGER_DEPLOY_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment:
+      name: production
+      url: https://liranyuzbegi.com
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: liranyuzbegi-hostinger-${{ github.sha }}
+          path: dist
+
+      - name: Prepare SSH authentication
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+        run: |
+          test -n "$SSH_PRIVATE_KEY" || { echo 'Missing HOSTINGER_SSH_KEY'; exit 1; }
+          test -n "$SSH_KNOWN_HOSTS" || { echo 'Missing HOSTINGER_KNOWN_HOSTS'; exit 1; }
+          install -d -m 700 "$RUNNER_TEMP/hostinger-ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" > "$RUNNER_TEMP/hostinger-ssh/key"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > "$RUNNER_TEMP/hostinger-ssh/known_hosts"
+          chmod 600 "$RUNNER_TEMP/hostinger-ssh/"*
+
+      - name: Preview or deploy
+        env:
+          DEPLOY_MODE: ${{ github.event_name == 'push' && 'deploy' || inputs.mode }}
+          SSH_DIRECTORY: ${{ runner.temp }}/hostinger-ssh
+        run: bash scripts/deploy-hostinger.sh
+
+      - name: Remove SSH credentials
+        if: always()
+        run: rm -rf -- "$RUNNER_TEMP/hostinger-ssh"

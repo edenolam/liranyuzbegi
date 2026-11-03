@@ -1,0 +1,39 @@
+name: Check project
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      APP_ENV: prod
+      APP_DEBUG: '0'
+      # Placeholder values used only on the GitHub runner.
+      APP_SECRET: github-actions-build-only
+      DATABASE_URL: mysql://build:build@127.0.0.1:3306/build?serverVersion=8.0.32&charset=utf8mb4
+      MAILER_DSN: 'null://null'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: ctype, iconv, intl, mbstring, pdo_mysql, xml
+          coverage: none
+          tools: composer:v2
+
+      - name: Install production dependencies and build assets
+        run: bash scripts/build-production.sh
+
+      - name: Test deployment safeguards without connecting to Hostinger
+        run: python3 -B -m unittest discover -s tests/Deployment -v

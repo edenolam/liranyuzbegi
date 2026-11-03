@@ -96,6 +96,23 @@ Ne commitez jamais les véritables secrets, mots de passe ou accès SMTP.
 
 ## Déploiement sur Hostinger depuis GitHub
 
+Comme pour Thila, GitHub Actions sépare les contrôles, la préparation d'une
+archive et la livraison via l'environnement `production`.
+
+- **Check project** vérifie automatiquement chaque push sur `main` et les PR.
+- **Deploy to Hostinger** prépare puis livre automatiquement la version de
+  `main` après fusion d’une PR. Un lancement manuel reste possible pour un aperçu.
+- La livraison reste bloquée tant que la variable du dépôt
+  `HOSTINGER_DEPLOY_ENABLED` ne vaut pas `true`.
+
+Voir [`docs/GITHUB_ACTIONS.md`](docs/GITHUB_ACTIONS.md) pour les secrets SSH,
+la sauvegarde préalable et la conservation des médias et de la configuration.
+
+### Autre possibilité : intégration Git hPanel
+
+L'intégration ci-dessous est distincte du workflow Actions. La laisser
+non configurée pour éviter un second mécanisme de déploiement concurrent.
+
 Le dépôt peut être relié à Hostinger depuis :
 
 **hPanel → Sites web → Tableau de bord → Avancé → Git**
