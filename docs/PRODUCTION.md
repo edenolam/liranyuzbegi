@@ -16,6 +16,12 @@ over HTTPS.
 
 ## Deployment
 
+GitHub Actions runs automatic checks and deploys merged changes on `main` through a separate
+workflow. See [GITHUB_ACTIONS.md](GITHUB_ACTIONS.md) for the SSH configuration,
+preview, backup and production activation. Deployment requires the two repository SSH secrets documented below.
+The workflow preserves production configuration and uploads and does not execute
+migrations. The manual commands below are separate from the Actions workflow.
+
 Run the following commands for each release:
 
 ```bash
