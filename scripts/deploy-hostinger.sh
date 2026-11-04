@@ -32,22 +32,6 @@ command -v rsync >/dev/null
 php -r 'exit(PHP_VERSION_ID >= 80300 ? 0 : 1);'
 REMOTE
 
-if [[ "$mode" == deploy ]]; then
-  # A failed backup stops the script before the first application write.
-  ssh "${ssh_options[@]}" "$destination" "bash -s -- '$GITHUB_SHA'" <<'REMOTE'
-set -euo pipefail
-umask 077
-backup_root=/home/u262228329/liranyuzbegi-deploy-backups
-mkdir -p "$backup_root"
-chmod 700 "$backup_root"
-backup="$backup_root/$(date -u +%Y%m%dT%H%M%SZ)-$1.tar.gz"
-tar -czf "$backup" --exclude='./var/cache' --exclude='./var/log' \
-  -C /home/u262228329/domains/liranyuzbegi.com/public_html .
-test -s "$backup"
-printf 'Backup: %s\n' "$backup"
-REMOTE
-fi
-
 # Do not remove server files, environment configuration, uploads or old assets.
 rsync_options=(-rlz --itemize-changes --delay-updates
   --exclude='.env*' --exclude='.htaccess' --exclude='/public/uploads/'
