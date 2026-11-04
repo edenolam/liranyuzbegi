@@ -13,10 +13,10 @@ entry={'name':name,'args':args,'stdin':data}
 if name=='rsync':
  root=pathlib.Path(args[-2]); entry['files']=sorted(str(p.relative_to(root)) for p in root.rglob('*') if p.is_file())
 with open(os.environ['TEST_LOG'],'a') as f: f.write(json.dumps(entry)+'\\n')
-if name=='ssh' and 'tar -czf' in data and os.environ.get('FAIL_BACKUP')=='1': sys.exit(1)
+if name=='rsync' and os.environ.get('FAIL_TRANSFER')=='1': sys.exit(1)
 '''
 class Deployment(unittest.TestCase):
- def run_case(self, mode='preview', fail_backup=False, missing=False):
+ def run_case(self, mode='preview', fail_transfer=False, missing=False):
   with tempfile.TemporaryDirectory() as tmp:
    root=pathlib.Path(tmp)
    files=['vendor/autoload.php','public/assets/manifest.json','public/assets/styles/portfolio.css',
@@ -33,7 +33,7 @@ class Deployment(unittest.TestCase):
     path=mock/name;path.write_text(MOCK);path.chmod(0o755)
    log=root/'calls.jsonl'
    env={**os.environ,'PATH':str(mock)+':'+os.environ['PATH'],'SSH_DIRECTORY':str(root/'ssh'),
-    'GITHUB_SHA':'a'*40,'DEPLOY_MODE':mode,'TEST_LOG':str(log),'FAIL_BACKUP':str(int(fail_backup))}
+    'GITHUB_SHA':'a'*40,'DEPLOY_MODE':mode,'TEST_LOG':str(log),'FAIL_TRANSFER':str(int(fail_transfer))}
    result=subprocess.run(['bash',str(SCRIPT)],cwd=root,env=env,capture_output=True,text=True)
    calls=[json.loads(line) for line in log.read_text().splitlines()] if log.exists() else []
    return result,calls
@@ -46,16 +46,18 @@ class Deployment(unittest.TestCase):
    self.assertNotIn(path,transfer['files'])
   self.assertIn('public/assets/styles/portfolio.css',transfer['files'])
   self.assertIn('vendor/autoload.php',transfer['files'])
- def test_backup_before_transfer(self):
+ def test_deploy_without_backup(self):
   result,calls=self.run_case('deploy');self.assertEqual(result.returncode,0,result.stderr)
-  self.assertEqual([c['name'] for c in calls[:4]],['ssh','ssh','rsync','ssh'])
-  self.assertIn('tar -czf',calls[1]['stdin'])
-  self.assertNotIn('--dry-run',calls[2]['args'])
-  self.assertIn('cache:clear',calls[3]['stdin'])
+  self.assertEqual([c['name'] for c in calls[:3]],['ssh','rsync','ssh'])
+  self.assertNotIn('--dry-run',calls[1]['args'])
+  self.assertIn('cache:clear',calls[2]['stdin'])
+  for call in calls:
+   self.assertNotIn('tar -czf',call['stdin'])
+   self.assertNotIn('deploy-backups',call['stdin'])
   self.assertEqual(sum(c['name']=='curl' for c in calls),5)
- def test_failed_backup_blocks_transfer(self):
+ def test_failed_transfer_blocks_cache_and_http_checks(self):
   result,calls=self.run_case('deploy',True);self.assertNotEqual(result.returncode,0)
-  self.assertFalse(any(c['name']=='rsync' for c in calls))
+  self.assertEqual([c['name'] for c in calls],['ssh','rsync'])
  def test_invalid_mode(self):
   result,calls=self.run_case('invalid');self.assertNotEqual(result.returncode,0);self.assertEqual(calls,[])
  def test_missing_build_blocks_connection(self):

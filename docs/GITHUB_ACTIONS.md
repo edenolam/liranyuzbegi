@@ -51,8 +51,8 @@ fusionner la PR ; s'ils manquent, la livraison échoue avant l'accès au serveur
 - Une archive temporaire contient le code, les dépendances et les assets
   compilés. GitHub la prépare et la transfère automatiquement : aucune
   manipulation d'archive n'est demandée à l'utilisateur.
-- Le serveur sauvegarde ses fichiers hors de la racine web avant tout transfert,
-  puis reçoit le code, reconstruit son cache et vérifie les pages publiques.
+- Le serveur reçoit directement le code, reconstruit son cache et vérifie les
+  pages publiques. Aucune sauvegarde distante n’est créée.
 - Une seule livraison peut s'exécuter à la fois.
 
 Un aperçu sans transfert reste disponible dans **Actions → Deploy to Hostinger
@@ -67,14 +67,13 @@ Le workflow conserve les fichiers `.env*`, les `.htaccess`, `var/` et
 `public/uploads/`. Il n'exécute aucune migration ni initialisation de données.
 La base de production n'est jamais remplacée par la base locale.
 
-Les sauvegardes sont dans `/home/u262228329/liranyuzbegi-deploy-backups/`, avec
-des permissions privées. Elles incluent configuration et médias, hors caches
-et logs, mais pas la base de données. Un échec de sauvegarde bloque le transfert.
-
-La mise à jour se fait en place, sans suppression distante ni retour arrière
-automatique. Un échec peut demander une restauration manuelle. Les fichiers
-supprimés ou renommés dans Git doivent être retirés explicitement sur le serveur.
-L'intégration Git hPanel reste déconnectée pour éviter un deuxième déploiement.
+La mise à jour se fait en place, sans sauvegarde préalable, sans suppression
+distante et sans retour arrière automatique. Un échec peut laisser une mise à
+jour partielle. Le retrait des sauvegardes ne résout pas le quota disque : de
+l'espace reste nécessaire pour transférer les fichiers et reconstruire le cache.
+Les fichiers supprimés ou renommés dans Git doivent être retirés explicitement
+sur le serveur. L'intégration Git hPanel reste déconnectée pour éviter un deuxième
+déploiement.
 
 ## Vérifications locales sans accès distant
 

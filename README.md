@@ -106,7 +106,8 @@ archive et la livraison vers Hostinger.
   Aucun environnement GitHub ni variable d'activation n'est nécessaire.
 
 Voir [`docs/GITHUB_ACTIONS.md`](docs/GITHUB_ACTIONS.md) pour les secrets SSH,
-la sauvegarde préalable et la conservation des médias et de la configuration.
+la configuration et la conservation des médias. Le déploiement ne crée aucune
+sauvegarde sur Hostinger.
 
 ### Autre possibilité : intégration Git hPanel
 
