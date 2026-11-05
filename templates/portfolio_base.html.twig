@@ -13,23 +13,19 @@
         'research': '/research-and-artistic-practice',
         'contact': '/contact'
     } %}
-    <link rel="canonical" href="https://liranyuzbegi.com{{ canonicalRoutes[app.request.attributes.get('_route')]|default(app.request.pathInfo) }}">
+    {% set canonicalUrl = 'https://liranyuzbegi.com' ~ canonicalRoutes[app.request.attributes.get('_route')]|default(app.request.pathInfo) %}
+    <link rel="canonical" href="{{ canonicalUrl }}">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Liran Yuzbegi">
     <meta property="og:title" content="{{ block('title')|striptags|trim }}">
     <meta property="og:description" content="{{ block('description')|striptags|trim }}">
     <meta property="og:locale" content="en_US">
     <meta property="og:image" content="{{ absolute_url(asset('images/background1.png')) }}">
-    <script type="application/ld+json">{{ {
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        'name': 'Liran Yuzbegi',
-        'alternateName': 'לירן יוזבגי',
-        'url': 'https://liranyuzbegi.com/',
-        'image': 'https://liranyuzbegi.com/images/liran-yuzbegi-portrait.png',
-        'jobTitle': 'Researcher, composer and experimental filmmaker',
-        'knowsAbout': ['Electroacoustic music', 'Experimental film', 'Slow cinema', 'Audiovisual culture', 'Contemporary art']
-    }|json_encode(constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_UNESCAPED_SLASHES'))|raw }}</script>
+    {% include 'seo/person_structured_data.html.twig' with {
+        pageUrl: canonicalUrl,
+        pageTitle: block('title')|striptags|trim,
+        isProfilePage: app.request.attributes.get('_route') == 'about'
+    } only %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
