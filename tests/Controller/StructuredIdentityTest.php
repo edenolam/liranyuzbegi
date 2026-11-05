@@ -29,6 +29,7 @@ final class StructuredIdentityTest extends WebTestCase
         self::assertSame('https://liranyuzbegi.com/#liran-yuzbegi', $person['@id']);
         self::assertSame([
             'https://online.uni-graz.at/kfu_online/pl/ui/%24ctx%3Bdesign%3Dca2%3Bheader%3Dmax/visitenkarte.show_vcard?pPersonenGruppe=3&pPersonenId=7C2DB5B86E0AA36F',
+            'https://open.spotify.com/artist/515MChdibJUMXGOKs0laMv',
         ], $person['sameAs']);
 
         $page = $nodes[$path === '/about' ? 'ProfilePage' : 'WebPage'];
