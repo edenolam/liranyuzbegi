@@ -64,8 +64,8 @@
 .portfolio-hero h1 { font-size: clamp(3rem, 6.2vw, 5.5rem); letter-spacing: -.025em; line-height: .9; margin: 0 0 2.2rem; text-shadow: 0 6px 35px rgba(0, 0, 0, .45); white-space: nowrap; }
 .portfolio-roles { font-size: .7rem; letter-spacing: .11em; line-height: 1.8; margin: 0; text-transform: uppercase; }
 .portfolio-summary { line-height: 1.7; margin: 0; max-width: 31rem; }
-.portfolio-announcement { margin-top: 2rem; max-width: 31rem; }
-.portfolio-announcement h2 { font-size: 1.15rem; margin: 0 0 .65rem; }
+.portfolio-announcement { max-width: 31rem; }
+.portfolio-announcement h2 { font-size: 1rem; margin: 0 0 .65rem; }
 .portfolio-announcement p { line-height: 1.5; margin: 0 0 .3rem; }
 
 .portfolio-page {
@@ -201,6 +201,12 @@
     .portfolio-music__grid { grid-template-columns: 1fr; }
     .music-work { grid-template-columns: minmax(100px, .7fr) minmax(0, 1fr); }
     .portfolio-footer { align-items: flex-start; flex-direction: column; gap: .45rem; }
+}
+
+@media (max-height: 800px) {
+    .portfolio-hero { align-items: flex-start; padding-block: 6rem 2rem; }
+    .portfolio-hero h1 { margin-bottom: 1.5rem; }
+    .portfolio-hero .portfolio-rule { margin-block: 1.25rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
