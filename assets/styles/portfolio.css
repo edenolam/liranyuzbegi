@@ -64,6 +64,9 @@
 .portfolio-hero h1 { font-size: clamp(3rem, 6.2vw, 5.5rem); letter-spacing: -.025em; line-height: .9; margin: 0 0 2.2rem; text-shadow: 0 6px 35px rgba(0, 0, 0, .45); white-space: nowrap; }
 .portfolio-roles { font-size: .7rem; letter-spacing: .11em; line-height: 1.8; margin: 0; text-transform: uppercase; }
 .portfolio-summary { line-height: 1.7; margin: 0; max-width: 31rem; }
+.portfolio-announcement { margin-top: 2rem; max-width: 31rem; }
+.portfolio-announcement h2 { font-size: 1.15rem; margin: 0 0 .65rem; }
+.portfolio-announcement p { line-height: 1.5; margin: 0 0 .3rem; }
 
 .portfolio-page {
     background: radial-gradient(circle at 25% 20%, rgba(154, 112, 62, .17), transparent 32rem), linear-gradient(120deg, #120e0b, #2b2018 65%, #17100c);
