@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Upcoming Workshops & Lectures{% endblock %}
+
+{% block body %}
+    <div class="container mt-4" lang="en" dir="ltr">
+        <h1>Upcoming Workshops &amp; Lectures</h1>
+
+        {% for message in app.flashes('success') %}
+            <p class="alert alert-success" role="status">{{ message }}</p>
+        {% endfor %}
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-primary" type="submit">Save announcement</button>
+            <a class="btn btn-outline-secondary" href="{{ path('home') }}">View homepage</a>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
