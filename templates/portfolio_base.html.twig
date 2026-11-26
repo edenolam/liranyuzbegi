@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="{% block language %}en{% endblock %}" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,9 +29,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
     {{ importmap('app') }}
     {# Stable filename for manual Hostinger deployments; this file is copied beside compiled assets. #}
-    <link rel="stylesheet" href="/assets/styles/portfolio.css?v=20260805-7">
+    <link rel="stylesheet" href="{{ app.environment == 'dev' ? asset('styles/portfolio.css') : '/assets/styles/portfolio.css?v=20260805-8' }}">
 </head>
 <body class="portfolio-site">
 <a class="portfolio-skip" href="#main-content">Skip to main content</a>

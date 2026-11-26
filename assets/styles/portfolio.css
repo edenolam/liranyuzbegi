@@ -212,3 +212,56 @@
 @media (prefers-reduced-motion: reduce) {
     .portfolio-site *, .portfolio-site *::before, .portfolio-site *::after { transition: none !important; }
 }
+
+.portfolio-admin[data-bs-theme="dark"] {
+    --bs-body-color: var(--portfolio-paper);
+    --bs-body-bg: var(--portfolio-bg);
+    --bs-border-color: #665848;
+    color: var(--portfolio-paper);
+}
+
+.portfolio-admin h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
+.portfolio-admin .card,
+.portfolio-admin .form-control,
+.portfolio-admin .form-select {
+    border-radius: 0;
+}
+
+.portfolio-admin .form-control:focus,
+.portfolio-admin .form-select:focus {
+    border-color: var(--portfolio-accent);
+    box-shadow: 0 0 0 .15rem rgba(179, 158, 121, .3);
+}
+
+.portfolio-admin .btn {
+    --bs-btn-color: var(--portfolio-paper);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--portfolio-accent);
+    --bs-btn-hover-color: var(--portfolio-bg);
+    --bs-btn-hover-bg: var(--portfolio-accent);
+    --bs-btn-hover-border-color: var(--portfolio-accent);
+    --bs-btn-active-color: var(--portfolio-bg);
+    --bs-btn-active-bg: var(--portfolio-accent);
+    --bs-btn-active-border-color: var(--portfolio-accent);
+    --bs-btn-border-radius: 0;
+    color: var(--bs-btn-color);
+}
+
+.portfolio-admin :is(.btn-primary, .btn-success, .btn-warning) {
+    --bs-btn-color: var(--portfolio-bg);
+    --bs-btn-bg: var(--portfolio-accent);
+    --bs-btn-hover-bg: var(--portfolio-paper);
+    --bs-btn-hover-border-color: var(--portfolio-paper);
+}
+
+.portfolio-admin .btn:hover,
+.portfolio-admin .btn:focus-visible {
+    color: var(--bs-btn-hover-color);
+}
+
+.portfolio-admin audio {
+    max-width: 100%;
+}
